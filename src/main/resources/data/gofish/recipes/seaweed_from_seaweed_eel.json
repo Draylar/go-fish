@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gofish:seaweed_eel"
+    }
+  ],
+  "result": {
+    "item": "gofish:seaweed",
+    "count": 8
+  }
+}

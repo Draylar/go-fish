@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [
+      { "model": "gofish:block/fiery_crate" }
+    ]
+  }
+}

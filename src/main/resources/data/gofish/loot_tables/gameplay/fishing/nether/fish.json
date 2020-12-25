@@ -1,0 +1,85 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "name": "gofish:smokey_salmon"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "name": "gofish:magma_cod"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "gofish:bonefish"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "gofish:obsidian_halibut"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "gofish:basalt_bass"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "gofish:spikerfish"
+        },
+        {
+          "type": "item",
+          "weight": 15,
+          "name": "gofish:gilded_blackstone_carp",
+          "conditions": [
+            {
+              "condition": "gofish:match_biome",
+              "biome": {
+                "valid": [
+                  "basalt_deltas"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 15,
+          "name": "gofish:blackstone_trout",
+          "conditions": [
+            {
+              "condition": "gofish:match_biome",
+              "biome": {
+                "valid": [
+                  "basalt_deltas"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 15,
+          "name": "gofish:soul_salmon",
+          "conditions": [
+            {
+              "condition": "gofish:match_biome",
+              "biome": {
+                "valid": [
+                  "soul_sand_valley"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

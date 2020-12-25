@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " g ",
+    "sds"
+  ],
+  "key": {
+    "d": {
+      "item": "gofish:grilled_blackstone_trout"
+    },
+    "s": {
+      "item": "minecraft:baked_potato"
+    },
+    "g": {
+      "item": "gofish:baked_seaweed"
+    }
+  },
+  "result": {
+    "item": "gofish:grilled_blackstone_deluxe"
+  }
+}

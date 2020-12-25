@@ -1,0 +1,59 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:nether_sprouts"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:bone"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:nether_wart"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:weeping_vines"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:twisting_vines"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:gravel"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:crimson_fungus"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:crimson_roots"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:warped_roots"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:warped_fungus"
+        }
+      ]
+    }
+  ]
+}

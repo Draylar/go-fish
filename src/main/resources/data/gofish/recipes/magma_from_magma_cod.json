@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gofish:magma_cod"
+    }
+  ],
+  "result": {
+    "item": "minecraft:magma_block"
+  }
+}

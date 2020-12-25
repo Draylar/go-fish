@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [
+      { "model": "gofish:block/soul_crate" }
+    ]
+  }
+}

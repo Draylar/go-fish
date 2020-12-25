@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "name": "gofish:endfish"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "gofish:matrix_fish"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "gofish:ender_eel"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "fef"
+  ],
+  "key": {
+    "e": {
+      "item": "minecraft:iron_nugget"
+    },
+    "f": {
+      "item": "gofish:matrix_fish"
+    }
+  },
+  "result": {
+    "item": "minecraft:end_crystal"
+  }
+}

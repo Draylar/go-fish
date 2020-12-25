@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "go-fish",
+  "version": "${version}",
+  "name": "Go Fish",
+  "description": "Go fish!",
+  "authors": [
+    "Draylar"
+  ],
+  "license": "CC0-1.0",
+  "icon": "assets/gofish/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "draylar.gofish.GoFish"
+    ],
+    "client": [
+      "draylar.gofish.GoFishClient"
+    ]
+  },
+  "accessWidener": "gofish.accesswidener",
+  "mixins": [
+    "go-fish.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.8.4+build.198",
+    "fabric": "*"
+  }
+}

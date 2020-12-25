@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " d ",
+    "drd",
+    " d "
+  ],
+  "key": {
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "r": {
+      "item": "minecraft:fishing_rod"
+    }
+  },
+  "result": {
+    "item": "gofish:diamond_reinforced_rod"
+  }
+}

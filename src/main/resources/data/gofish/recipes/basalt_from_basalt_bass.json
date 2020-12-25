@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gofish:basalt_bass"
+    }
+  ],
+  "result": {
+    "item": "minecraft:basalt"
+  }
+}

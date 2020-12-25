@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gofish:blackstone_trout"
+  },
+  "result": "gofish:grilled_blackstone_trout",
+  "experience": 1.25,
+  "cookingtime": 400
+}
