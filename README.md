@@ -1,6 +1,6 @@
 # Go Fish 🎣
 
-Go Fish is a fishing enhancement mod for Fabric. It takes inspiration from Stardew Valley and Terraria to create a rewarding fishing experience with exiting new loot, creative aquatic creatures, and incentive to enjoy fishing.
+Go Fish is a fishing enhancement mod for Fabric. It takes inspiration from Stardew Valley and Terraria to create a rewarding fishing experience with exciting new loot, creative aquatic creatures, and an incentive to enjoy fishing.
 
 <img src="https://raw.githubusercontent.com/Draylar/go-fish/master/images/lava_fishing.png" alt="Go Fish banner" width="900">
 
