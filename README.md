@@ -1,6 +1,6 @@
 # Go Fish 🎣
 
-Go Fish is a fishing enhancement mod for Fabric. It takes inspiration from Stardew Valley and Terraria to create a rewarding fishing experience with exiting new loot, creative aquatic creatures, and incentive to enjoy fishing.
+Go Fish is a fishing enhancement mod for Fabric. It takes inspiration from Stardew Valley and Terraria to create a rewarding fishing experience with exciting new loot, creative aquatic creatures, and an incentive to enjoy fishing.
 
 <img src="https://raw.githubusercontent.com/Draylar/go-fish/master/images/lava_fishing.png" alt="Go Fish banner" width="900">
 
@@ -19,3 +19,8 @@ Go Fish is a fishing enhancement mod for Fabric. It takes inspiration from Stard
 
 ---
 
+Go Fish can be found on CurseForge [here](https://www.curseforge.com/minecraft/mc-mods/go-fish), and is currently available for versions 1.16.2+. Forge is not supported, and will **not** be supported in the future.
+
+<img src="https://raw.githubusercontent.com/Draylar/go-fish/master/images/crates.png" alt="Go Fish banner" width="900">
+
+For more information about the mod, [visit the wiki](https://github.com/Draylar/go-fish/wiki).
