@@ -28,6 +28,16 @@
   "item.gofish.basalt_bass": "Basalt Bass",
   "item.gofish.obsidian_halibut": "Obsidian Halibut",
 
+  "item.gofish.lunarfish": "Lunarfish",
+  "item.gofish.starry_salmon": "Starry Salmon",
+  "item.gofish.galaxy_starfish": "Galaxy Starfish",
+  "item.gofish.nebula_swordfish": "Nebula Swordfish",
+
+  "item.gofish.aquatic_astral_stew": "Aquatic Astral Stew",
+  "item.gofish.aquatic_astral_stew.tooltip_1": "This Aquatic Astral Stew",
+  "item.gofish.aquatic_astral_stew.tooltip_2": "is a mix of various astral fish",
+  "item.gofish.aquatic_astral_stew.tooltip_3": "and contains a galaxy of flavors.",
+
   "item.gofish.simple_lure": "Simple Lure",
   "item.gofish.golden_fish": "Golden Fish",
   "item.gofish.soul_lure": "Soul Lure",
@@ -59,6 +69,9 @@
   "item.gofish.soul_rod": "Rod of Souls",
   "item.gofish.matrix_rod": "Matrix Rod",
 
+  "item.gofish.celestial_rod": "Celestial Rod",
+  "item.gofish.celestial_rod.tooltip_1": "+1 luck at night.",
+
   "block.gofish.wooden_crate": "Wooden Crate",
   "block.gofish.iron_crate": "Iron Crate",
   "block.gofish.golden_crate": "Golden Crate",
@@ -68,5 +81,6 @@
   "block.gofish.gilded_blackstone_crate": "Gilded Blackstone Crate",
   "block.gofish.slimey_crate": "Slimey Crate",
   "block.gofish.fiery_crate": "Fiery Crate",
-  "block.gofish.supply_crate": "Supply Crate"
+  "block.gofish.supply_crate": "Supply Crate",
+  "block.gofish.astral_crate": "Astral Crate"
 }

@@ -1,6 +1,7 @@
 package draylar.gofish.registry;
 
-import draylar.gofish.loot.BiomeLootCondition;
+import draylar.gofish.loot.biome.BiomeLootCondition;
+import draylar.gofish.loot.moon.FullMoonCondition;
 import draylar.gofish.mixin.LootTableBuilderAccessor;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
@@ -8,7 +9,6 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 
 public class GoFishLootHandler {
 
@@ -47,6 +47,11 @@ public class GoFishLootHandler {
                 lpb.with(ItemEntry.builder(GoFishItems.CARROT_CARP).weight(10).conditionally(BiomeLootCondition.builder(Biome.Category.FOREST)));
                 lpb.with(ItemEntry.builder(GoFishItems.OAKFISH).weight(10).conditionally(BiomeLootCondition.builder(Biome.Category.FOREST)));
 
+                // Misc
+                lpb.with(ItemEntry.builder(GoFishItems.LUNARFISH).weight(50).conditionally(FullMoonCondition.builder()));
+                lpb.with(ItemEntry.builder(GoFishItems.GALAXY_STARFISH).weight(25).conditionally(FullMoonCondition.builder()));
+                lpb.with(ItemEntry.builder(GoFishItems.STARRY_SALMON).weight(50).conditionally(FullMoonCondition.builder()));
+                lpb.with(ItemEntry.builder(GoFishItems.NEBULA_SWORDFISH).weight(25).conditionally(FullMoonCondition.builder()));
 
                 ((LootTableBuilderAccessor) fabricLootSupplierBuilder).getPools().set(0, lpb.build());
             }

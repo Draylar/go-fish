@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [
+      { "model": "gofish:block/astral_crate" }
+    ]
+  }
+}

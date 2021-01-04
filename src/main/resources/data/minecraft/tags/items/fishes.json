@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "gofish:icicle_fish",
+    "gofish:lilyfish",
+    "gofish:matrix_fish",
+    "gofish:slimefish",
+    "gofish:snowball_fish",
+    "gofish:terrafish",
+    "gofish:carrot_carp",
+    "gofish:oakfish",
+    "gofish:spikerfish",
+    "gofish:blackstone_trout",
+    "gofish:bonefish",
+    "gofish:gilded_blackstone_carp",
+    "gofish:smokey_salmon",
+    "gofish:soul_salmon",
+    "gofish:magma_cod",
+    "gofish:basalt_bass",
+    "gofish:obsidian_halibut",
+    "gofish:endfish",
+    "gofish:ender_eel",
+    "gofish:seaweed_eel",
+    "gofish:lunarfish",
+    "gofish:galaxy_starfish",
+    "gofish:starry_salmon",
+    "gofish:nebula_swordfish"
+  ]
+}

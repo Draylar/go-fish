@@ -3,6 +3,8 @@ package draylar.gofish.item;
 import draylar.gofish.GoFish;
 import draylar.gofish.api.*;
 import draylar.gofish.registry.GoFishEnchantments;
+import javafx.scene.control.Tooltip;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ExtendedFishingRodItem extends Item implements Vanishable {
+public class ExtendedFishingRodItem extends TooltippedItem implements Vanishable {
 
     private final SoundInstance retrieve;
     private final SoundInstance cast;
@@ -32,10 +34,11 @@ public class ExtendedFishingRodItem extends Item implements Vanishable {
     private final int baseExperience;
     private final boolean autosmelt;
     private final boolean lavaProof;
+    private final boolean nightLuck;
     private final Formatting formatting;
 
-    public ExtendedFishingRodItem(Settings settings, SoundInstance retrieve, SoundInstance cast, int baseLure, int baseLOTS, int baseExperience, boolean autosmelt, boolean lavaProof, Formatting formatting) {
-        super(settings);
+    public ExtendedFishingRodItem(Settings settings, SoundInstance retrieve, SoundInstance cast, int baseLure, int baseLOTS, int baseExperience, boolean autosmelt, boolean lavaProof, boolean nightLuck, Formatting formatting, int tooltipLines) {
+        super(settings, tooltipLines);
         this.retrieve = retrieve;
         this.cast = cast;
         this.baseLure = baseLure;
@@ -43,6 +46,7 @@ public class ExtendedFishingRodItem extends Item implements Vanishable {
         this.baseExperience = baseExperience;
         this.autosmelt = autosmelt;
         this.lavaProof = lavaProof;
+        this.nightLuck = nightLuck;
         this.formatting = formatting;
     }
 
@@ -68,6 +72,11 @@ public class ExtendedFishingRodItem extends Item implements Vanishable {
                 int bonusLure = 0;
                 int bonusLuck = 0;
                 int bonusExperience = 0;
+
+                // Check for night luck
+                if(nightLuck && user.world.isNight()) {
+                    bonusLuck++;
+                }
 
                 // Find buffing items in player inventory
                 List<FishingBonus> found = new ArrayList<>();
@@ -149,7 +158,9 @@ public class ExtendedFishingRodItem extends Item implements Vanishable {
         private int experience = 1;
         private boolean autosmelt = false;
         private boolean lavaProof = false;
+        private boolean nightLuck = false;
         private Formatting formatting = Formatting.WHITE;
+        private int tooltipLines = 0;
 
         public Builder() {
 
@@ -205,8 +216,18 @@ public class ExtendedFishingRodItem extends Item implements Vanishable {
             return this;
         }
 
+        public Builder nightLuck(boolean nightLuck) {
+            this.nightLuck = nightLuck;
+            return this;
+        }
+
+        public Builder tooltipLines(int tooltipLines) {
+            this.tooltipLines = tooltipLines;
+            return this;
+        }
+
         public ExtendedFishingRodItem build() {
-            return new ExtendedFishingRodItem(settings, retrieve, cast, baseLure, baseLOTS, experience, autosmelt, lavaProof, formatting);
+            return new ExtendedFishingRodItem(settings, retrieve, cast, baseLure, baseLOTS, experience, autosmelt, lavaProof, nightLuck, formatting, tooltipLines);
         }
     }
 }

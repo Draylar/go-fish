@@ -16,15 +16,17 @@ public class TooltippedItem extends Item {
 
     public TooltippedItem(Settings settings, int lines) {
         super(settings);
-        this.lines = Math.max(1, lines);
+        this.lines = lines;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        for(int i = 1; i <= lines; i++) {
-            tooltip.add(new TranslatableText(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
+        if(lines > 0) {
+            for (int i = 1; i <= lines; i++) {
+                tooltip.add(new TranslatableText(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package draylar.gofish.registry;
 
 import draylar.gofish.GoFish;
+import draylar.gofish.block.AstralCrateBlock;
 import draylar.gofish.block.CrateBlock;
 import draylar.gofish.item.CrateItem;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -44,6 +45,7 @@ public class GoFishBlocks {
     public static Block FIERY_CRATE = registerCrate("fiery_crate", new CrateBlock(FabricBlockSettings.copyOf(Blocks.NETHER_BRICKS)), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8), GoFish.id("gameplay/fishing/fiery_crate"));
     public static Block SOUL_CRATE = registerCrate("soul_crate", new CrateBlock(FabricBlockSettings.copyOf(Blocks.STONE)), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8).rarity(Rarity.RARE), GoFish.id("gameplay/fishing/soul_crate"));
     public static Block GILDED_BLACKSTONE_CRATE = registerCrate("gilded_blackstone_crate", new CrateBlock(FabricBlockSettings.copyOf(Blocks.GILDED_BLACKSTONE)), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8).rarity(Rarity.UNCOMMON), GoFish.id("gameplay/fishing/gilded_blackstone_crate"));
+    public static Block ASTRAL_CRATE = registerCrate("astral_crate", new AstralCrateBlock(FabricBlockSettings.copyOf(Blocks.END_STONE).nonOpaque()), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8).rarity(Rarity.EPIC), GoFish.id("gameplay/fishing/astral_crate"));
 
     public static <T extends Block> T register(String name, T block) {
         return Registry.register(Registry.BLOCK, GoFish.id(name), block);

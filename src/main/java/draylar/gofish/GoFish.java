@@ -28,6 +28,7 @@ public class GoFish implements ModInitializer {
         GoFishLoot.init();
         GoFishLootHandler.init();
         GoFishParticles.init();
+        GoFishEntities.init();
 
         FishCommand.register();
 

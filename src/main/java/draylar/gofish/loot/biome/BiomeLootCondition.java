@@ -1,4 +1,4 @@
-package draylar.gofish.loot;
+package draylar.gofish.loot.biome;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonDeserializationContext;
@@ -35,7 +35,7 @@ public class BiomeLootCondition implements LootCondition {
 
     @Override
     public Set<LootContextParameter<?>> getRequiredParameters() {
-        return ImmutableSet.of(LootContextParameters.TOOL);
+        return ImmutableSet.of();
     }
 
     @Override

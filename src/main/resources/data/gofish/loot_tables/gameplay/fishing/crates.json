@@ -26,6 +26,16 @@
         },
         {
           "type": "item",
+          "weight": 4,
+          "name": "gofish:astral_crate",
+          "conditions": [
+            {
+              "condition": "gofish:full_moon"
+            }
+          ]
+        },
+        {
+          "type": "item",
           "weight": 2,
           "name": "gofish:supply_crate",
           "conditions": [

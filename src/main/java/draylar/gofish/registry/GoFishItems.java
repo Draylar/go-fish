@@ -64,6 +64,12 @@ public class GoFishItems {
             .color(Formatting.LIGHT_PURPLE)
             .build());
 
+    public static final Item CELESTIAL_ROD = register("celestial_rod", new ExtendedFishingRodItem.Builder()
+            .durability(150)
+            .color(Formatting.LIGHT_PURPLE)
+            .tooltipLines(1)
+            .build());
+
     // fish
     public static final Item ENDER_EEL = register("ender_eel", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
     public static final Item ICICLE_FISH = register("icicle_fish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 0, 0), 1).build()).group(GoFish.GROUP)));
@@ -97,6 +103,13 @@ public class GoFishItems {
     public static final Item ENDFISH = register("endfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
     public static final Item BAKED_ENDFISH = register("baked_endfish", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(6).build()).group(GoFish.GROUP), 2));
     public static final Item ENDFISH_AND_CHORUS = register("endfish_and_chorus", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(8).build()).group(GoFish.GROUP), 2));
+
+    // special
+    public static final Item LUNARFISH = register("lunarfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
+    public static final Item GALAXY_STARFISH = register("galaxy_starfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
+    public static final Item STARRY_SALMON = register("starry_salmon", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
+    public static final Item NEBULA_SWORDFISH = register("nebula_swordfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
+    public static final Item AQUATIC_ASTRAL_STEW = register("aquatic_astral_stew", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(9).build()).group(GoFish.GROUP), 3));
 
     // accessories
     public static final Item GOLDEN_FISH = register("golden_fish", new LureItem(new Item.Settings().group(GoFish.GROUP).maxCount(1).rarity(Rarity.EPIC), 1));

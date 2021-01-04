@@ -1,4 +1,4 @@
-package draylar.gofish.loot;
+package draylar.gofish.loot.biome;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
