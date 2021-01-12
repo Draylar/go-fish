@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "gofish:carrot_carp"
+  },
+  "result": "gofish:baked_carrot_carp",
+  "experience": 0.7,
+  "cookingtime": 100
+}
