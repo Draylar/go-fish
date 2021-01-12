@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:campfire_cooking",
   "ingredient": {
     "item": "gofish:endfish"
   },
