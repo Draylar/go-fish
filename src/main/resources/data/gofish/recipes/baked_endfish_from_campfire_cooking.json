@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "gofish:endfish"
+  },
+  "result": "gofish:baked_endfish",
+  "experience": 0.7,
+  "cookingtime": 600
+}
