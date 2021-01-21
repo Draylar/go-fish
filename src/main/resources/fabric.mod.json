@@ -7,6 +7,9 @@
   "authors": [
     "Draylar"
   ],
+  "contributors": [
+    "Birgliss"
+  ],
   "license": "CC0-1.0",
   "icon": "assets/gofish/icon.png",
   "environment": "*",
