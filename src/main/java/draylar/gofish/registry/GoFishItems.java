@@ -73,43 +73,43 @@ public class GoFishItems {
     // fish
     public static final Item ENDER_EEL = register("ender_eel", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
     public static final Item ICICLE_FISH = register("icicle_fish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 0, 0), 1).build()).group(GoFish.GROUP)));
-    public static final Item LILYFISH = register("lilyfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
-    public static final Item MATRIX_FISH = register("matrix_fish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP)));
+    public static final Item LILYFISH = register("lilyfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.5f).build()).group(GoFish.GROUP)));
+    public static final Item MATRIX_FISH = register("matrix_fish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5f).build()).group(GoFish.GROUP)));
     public static final Item SEAWEED = register("seaweed", new Item(new Item.Settings().group(GoFish.GROUP)));
-    public static final Item BAKED_SEAWEED = register("baked_seaweed", new Item(new Item.Settings().group(GoFish.GROUP).food(new FoodComponent.Builder().hunger(4).build())));
+    public static final Item BAKED_SEAWEED = register("baked_seaweed", new Item(new Item.Settings().group(GoFish.GROUP).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5f).build())));
     public static final Item SEAWEED_EEL = register("seaweed_eel", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP)));
-    public static final Item SLIMEFISH = register("slimefish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 5, 0), 1).build()).group(GoFish.GROUP)));
-    public static final Item SNOWBALL_FISH = register("snowball_fish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP)));
-    public static final Item TERRAFISH = register("terrafish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP)));
-    public static final Item CARROT_CARP = register("carrot_carp", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP)));
-    public static final Item BAKED_CARROT_CARP = register("baked_carrot_carp", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).build()).group(GoFish.GROUP)));
+    public static final Item SLIMEFISH = register("slimefish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.25f).statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 5, 0), 1).build()).group(GoFish.GROUP)));
+    public static final Item SNOWBALL_FISH = register("snowball_fish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.25f).build()).group(GoFish.GROUP)));
+    public static final Item TERRAFISH = register("terrafish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5f).build()).group(GoFish.GROUP)));
+    public static final Item CARROT_CARP = register("carrot_carp", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.25f).build()).group(GoFish.GROUP)));
+    public static final Item BAKED_CARROT_CARP = register("baked_carrot_carp", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.5f).build()).group(GoFish.GROUP)));
     public static final Item OAKFISH = register("oakfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(3).build()).group(GoFish.GROUP)));
     public static final Item CHARFISH = register("charfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).statusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 20 * 5, 0), 1).build()).group(GoFish.GROUP)));
 
     // nether
     public static final Item SPIKERFISH = register("spikerfish", new Item(new Item.Settings().group(GoFish.GROUP).fireproof()));
-    public static final Item BLACKSTONE_TROUT = register("blackstone_trout", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP).fireproof()));
-    public static final Item GRILLED_BLACKSTONE_TROUT = register("grilled_blackstone_trout", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(8).build()).group(GoFish.GROUP).fireproof(), 2));
-    public static final Item GRILLED_BLACKSTONE_DELUXE = register("grilled_blackstone_deluxe", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(11).build()).group(GoFish.GROUP).fireproof(), 3));
+    public static final Item BLACKSTONE_TROUT = register("blackstone_trout", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.75f).build()).group(GoFish.GROUP).fireproof()));
+    public static final Item GRILLED_BLACKSTONE_TROUT = register("grilled_blackstone_trout", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(8).saturationModifier(0.8f).build()).group(GoFish.GROUP).fireproof(), 2));
+    public static final Item GRILLED_BLACKSTONE_DELUXE = register("grilled_blackstone_deluxe", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(11).saturationModifier(0.8f).build()).group(GoFish.GROUP).fireproof(), 3));
     public static final Item BONEFISH = register("bonefish", new Item(new Item.Settings().group(GoFish.GROUP).fireproof()));
-    public static final Item GILDED_BLACKSTONE_CARP = register("gilded_blackstone_carp", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP).fireproof()));
-    public static final Item SMOKEY_SALMON = register("smokey_salmon", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20 * 15, 0), 1).build()).group(GoFish.GROUP).fireproof()));
-    public static final Item SOUL_SALMON = register("soul_salmon", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).build()).group(GoFish.GROUP).fireproof()));
-    public static final Item MAGMA_COD = register("magma_cod", new Item(new Item.Settings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20 * 15, 0), 1).hunger(6).build()).group(GoFish.GROUP).fireproof()));
-    public static final Item BASALT_BASS = register("basalt_bass", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP).fireproof()));
-    public static final Item OBSIDIAN_HALIBUT = register("obsidian_halibut", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP).fireproof()));
+    public static final Item GILDED_BLACKSTONE_CARP = register("gilded_blackstone_carp", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5f).build()).group(GoFish.GROUP).fireproof()));
+    public static final Item SMOKEY_SALMON = register("smokey_salmon", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.5f).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20 * 15, 0), 1).build()).group(GoFish.GROUP).fireproof()));
+    public static final Item SOUL_SALMON = register("soul_salmon", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.75f).build()).group(GoFish.GROUP).fireproof()));
+    public static final Item MAGMA_COD = register("magma_cod", new Item(new Item.Settings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20 * 15, 0), 1).hunger(6).saturationModifier(0.5f).build()).group(GoFish.GROUP).fireproof()));
+    public static final Item BASALT_BASS = register("basalt_bass", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.25f).build()).group(GoFish.GROUP).fireproof()));
+    public static final Item OBSIDIAN_HALIBUT = register("obsidian_halibut", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.25f).build()).group(GoFish.GROUP).fireproof()));
 
     // end
     public static final Item ENDFISH = register("endfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
-    public static final Item BAKED_ENDFISH = register("baked_endfish", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(6).build()).group(GoFish.GROUP), 2));
-    public static final Item ENDFISH_AND_CHORUS = register("endfish_and_chorus", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(8).build()).group(GoFish.GROUP), 2));
+    public static final Item BAKED_ENDFISH = register("baked_endfish", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.8f).build()).group(GoFish.GROUP), 2));
+    public static final Item ENDFISH_AND_CHORUS = register("endfish_and_chorus", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(8).saturationModifier(1f).build()).group(GoFish.GROUP), 2));
 
     // special
     public static final Item LUNARFISH = register("lunarfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
     public static final Item GALAXY_STARFISH = register("galaxy_starfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
     public static final Item STARRY_SALMON = register("starry_salmon", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
     public static final Item NEBULA_SWORDFISH = register("nebula_swordfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
-    public static final Item AQUATIC_ASTRAL_STEW = register("aquatic_astral_stew", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(9).build()).group(GoFish.GROUP), 3));
+    public static final Item AQUATIC_ASTRAL_STEW = register("aquatic_astral_stew", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(9).saturationModifier(0.75f).build()).group(GoFish.GROUP), 3));
 
     // accessories
     public static final Item GOLDEN_FISH = register("golden_fish", new LureItem(new Item.Settings().group(GoFish.GROUP).maxCount(1).rarity(Rarity.EPIC), 1));
