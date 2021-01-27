@@ -1,0 +1,30 @@
+{
+  "parent": "gofish:fishing/root",
+  "display": {
+    "icon": {
+      "item": "gofish:golden_fish"
+    },
+    "title": {
+      "translate": "advancements.fishing.golden_lure.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.golden_lure.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:golden_fish"
+          }
+        ]
+      }
+    }
+  }
+}

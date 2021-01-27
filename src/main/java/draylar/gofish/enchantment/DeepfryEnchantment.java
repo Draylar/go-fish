@@ -2,6 +2,7 @@ package draylar.gofish.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 
 /*
@@ -15,5 +16,20 @@ public class DeepfryEnchantment extends Enchantment {
                 EquipmentSlot.MAINHAND,
                 EquipmentSlot.OFFHAND
         });
+    }
+
+    @Override
+    public int getMinPower(int level) {
+        return 15;
+    }
+
+    @Override
+    public int getMaxPower(int level) {
+        return super.getMinPower(level) + 50;
+    }
+
+    @Override
+    public int getMaxLevel() {
+        return 1;
     }
 }

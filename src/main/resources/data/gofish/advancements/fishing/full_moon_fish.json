@@ -1,0 +1,39 @@
+{
+  "parent": "gofish:fishing/root",
+  "display": {
+    "icon": {
+      "item": "gofish:starry_salmon"
+    },
+    "title": {
+      "translate": "advancements.fishing.full_moon_fish.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.full_moon_fish.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:lunarfish"
+          },
+          {
+            "item": "gofish:galaxy_starfish"
+          },
+          {
+            "item": "gofish:starry_salmon"
+          },
+          {
+            "item": "gofish:nebula_swordfish"
+          }
+        ]
+      }
+    }
+  }
+}

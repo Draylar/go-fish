@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "gofish:rainy_bass"
+  },
+  "result": "gofish:steamed_bass",
+  "experience": 0.25,
+  "cookingtime": 250
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "gofish:fishing/seaweed",
+  "display": {
+    "icon": {
+      "item": "gofish:seaweed_eel"
+    },
+    "title": {
+      "translate": "advancements.fishing.seaweed_eel.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.seaweed_eel.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:seaweed_eel"
+          }
+        ]
+      }
+    }
+  }
+}

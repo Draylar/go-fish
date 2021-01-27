@@ -1,0 +1,30 @@
+{
+  "parent": "gofish:fishing/full_moon_fish",
+  "display": {
+    "icon": {
+      "item": "gofish:aquatic_astral_stew"
+    },
+    "title": {
+      "translate": "advancements.fishing.aquatic_astral_stew.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.aquatic_astral_stew.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:aquatic_astral_stew"
+          }
+        ]
+      }
+    }
+  }
+}

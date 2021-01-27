@@ -3,6 +3,7 @@
   "package": "draylar.gofish.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "LocationPredicateBuilderAccessor",
     "FishingBobberAutosmeltMixin",
     "FishingBobberEntityRendererMixin",
     "FishingBobberExperienceMixin",

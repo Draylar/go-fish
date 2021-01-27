@@ -1,0 +1,30 @@
+{
+  "parent": "gofish:fishing/crate/wooden_crate",
+  "display": {
+    "icon": {
+      "item": "gofish:supply_crate"
+    },
+    "title": {
+      "translate": "advancements.fishing.supply_crate.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.supply_crate.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:supply_crate"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "gofish:fishing/crate/golden_crate",
+  "display": {
+    "icon": {
+      "item": "gofish:diamond_crate"
+    },
+    "title": {
+      "translate": "advancements.fishing.diamond_crate.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.diamond_crate.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:diamond_crate"
+          }
+        ]
+      }
+    }
+  }
+}

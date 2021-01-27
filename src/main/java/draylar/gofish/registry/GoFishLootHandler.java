@@ -1,12 +1,17 @@
 package draylar.gofish.registry;
 
+import draylar.gofish.loot.WeatherCondition;
 import draylar.gofish.loot.biome.BiomeLootCondition;
 import draylar.gofish.loot.moon.FullMoonCondition;
+import draylar.gofish.mixin.LocationPredicateBuilderAccessor;
 import draylar.gofish.mixin.LootTableBuilderAccessor;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.loot.LootPool;
+import net.minecraft.loot.condition.LocationCheckLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.predicate.NumberRange;
+import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
@@ -52,6 +57,14 @@ public class GoFishLootHandler {
                 lpb.with(ItemEntry.builder(GoFishItems.GALAXY_STARFISH).weight(25).conditionally(FullMoonCondition.builder()));
                 lpb.with(ItemEntry.builder(GoFishItems.STARRY_SALMON).weight(50).conditionally(FullMoonCondition.builder()));
                 lpb.with(ItemEntry.builder(GoFishItems.NEBULA_SWORDFISH).weight(25).conditionally(FullMoonCondition.builder()));
+
+                // weather
+                lpb.with(ItemEntry.builder(GoFishItems.RAINY_BASS).weight(100).conditionally(WeatherCondition.builder(true, false, false)));
+                lpb.with(ItemEntry.builder(GoFishItems.THUNDERING_BASS).weight(50).conditionally(WeatherCondition.builder(false, true, false)));
+                LocationPredicate.Builder biome = new LocationPredicate.Builder();
+                ((LocationPredicateBuilderAccessor) biome).setY(NumberRange.FloatRange.atLeast(150));
+                lpb.with(ItemEntry.builder(GoFishItems.CLOUDY_CRAB).weight(50).conditionally(LocationCheckLootCondition.builder(biome)));
+                lpb.with(ItemEntry.builder(GoFishItems.BLIZZARD_BASS).weight(100).conditionally(WeatherCondition.builder(false, false, true)));
 
                 ((LootTableBuilderAccessor) fabricLootSupplierBuilder).getPools().set(0, lpb.build());
             }

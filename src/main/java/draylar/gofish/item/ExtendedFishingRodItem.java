@@ -3,11 +3,11 @@ package draylar.gofish.item;
 import draylar.gofish.GoFish;
 import draylar.gofish.api.*;
 import draylar.gofish.registry.GoFishEnchantments;
-import javafx.scene.control.Tooltip;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
+import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Vanishable;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ExtendedFishingRodItem extends TooltippedItem implements Vanishable {
+public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable {
 
     private final SoundInstance retrieve;
     private final SoundInstance cast;
@@ -36,9 +36,10 @@ public class ExtendedFishingRodItem extends TooltippedItem implements Vanishable
     private final boolean lavaProof;
     private final boolean nightLuck;
     private final Formatting formatting;
+    private final int lines;
 
     public ExtendedFishingRodItem(Settings settings, SoundInstance retrieve, SoundInstance cast, int baseLure, int baseLOTS, int baseExperience, boolean autosmelt, boolean lavaProof, boolean nightLuck, Formatting formatting, int tooltipLines) {
-        super(settings, tooltipLines);
+        super(settings);
         this.retrieve = retrieve;
         this.cast = cast;
         this.baseLure = baseLure;
@@ -48,6 +49,7 @@ public class ExtendedFishingRodItem extends TooltippedItem implements Vanishable
         this.lavaProof = lavaProof;
         this.nightLuck = nightLuck;
         this.formatting = formatting;
+        this.lines = tooltipLines;
     }
 
     @Override
@@ -129,6 +131,17 @@ public class ExtendedFishingRodItem extends TooltippedItem implements Vanishable
         }
 
         return name;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+
+        if(lines > 0) {
+            for (int i = 1; i <= lines; i++) {
+                tooltip.add(new TranslatableText(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
+            }
+        }
     }
 
     public int getBaseExperience() {

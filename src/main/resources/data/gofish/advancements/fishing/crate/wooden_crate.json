@@ -1,0 +1,30 @@
+{
+  "parent": "gofish:fishing/root",
+  "display": {
+    "icon": {
+      "item": "gofish:wooden_crate"
+    },
+    "title": {
+      "translate": "advancements.fishing.wooden_crate.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.wooden_crate.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:wooden_crate"
+          }
+        ]
+      }
+    }
+  }
+}

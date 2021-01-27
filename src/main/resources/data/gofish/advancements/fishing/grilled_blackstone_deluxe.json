@@ -1,0 +1,30 @@
+{
+  "parent": "gofish:fishing/baked_seaweed",
+  "display": {
+    "icon": {
+      "item": "gofish:grilled_blackstone_deluxe"
+    },
+    "title": {
+      "translate": "advancements.fishing.grilled_blackstone_deluxe.title"
+    },
+    "description": {
+      "translate": "advancements.fishing.grilled_blackstone_deluxe.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gofish:grilled_blackstone_deluxe"
+          }
+        ]
+      }
+    }
+  }
+}

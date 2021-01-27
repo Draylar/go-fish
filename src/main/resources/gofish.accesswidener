@@ -1,3 +1,4 @@
 accessWidener   v1  named
 
 accessible class net/minecraft/client/particle/ParticleManager$SpriteAwareFactory
+accessible method net/minecraft/recipe/BrewingRecipeRegistry registerPotionRecipe (Lnet/minecraft/potion/Potion;Lnet/minecraft/item/Item;Lnet/minecraft/potion/Potion;)V

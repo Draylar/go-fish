@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "gofish:cloudy_crab"
+  },
+  "result": "gofish:smoked_cloudy_crab",
+  "experience": 1.0,
+  "cookingtime": 300
+}
