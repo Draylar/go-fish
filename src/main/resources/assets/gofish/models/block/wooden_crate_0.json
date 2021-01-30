@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"side": "gofish:block/wooden_crate_strut",
+		"end": "gofish:block/wooden_crate_bar"
+	}
+}
