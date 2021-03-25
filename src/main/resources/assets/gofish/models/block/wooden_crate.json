@@ -1,6 +1,7 @@
 {
 	"parent": "block/cube",
 	"textures": {
+		"particle": "gofish:block/wooden_crate",
 		"up": "gofish:block/wooden_crate",
 		"down": "gofish:block/wooden_crate",
 		"north": "gofish:block/wooden_crate_bar",
