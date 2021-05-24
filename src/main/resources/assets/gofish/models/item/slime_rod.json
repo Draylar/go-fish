@@ -2,5 +2,13 @@
   "parent": "item/handheld_rod",
   "textures": {
     "layer0": "gofish:item/slime_rod"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cast": 1
+      },
+      "model": "gofish:item/slime_rod_cast"
+    }
+  ]
 }
