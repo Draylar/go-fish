@@ -13,6 +13,8 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.util.JsonSerializer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
@@ -40,33 +42,32 @@ public class BiomeLootCondition implements LootCondition {
 
     @Override
     public boolean test(LootContext lootContext) {
-        Entity fisher = lootContext.get(LootContextParameters.THIS_ENTITY);
+        Vec3d origin = lootContext.get(LootContextParameters.ORIGIN);
 
-        if(fisher instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) fisher;
-            Biome fisherBiome = player.world.getBiome(player.getBlockPos());
+        if(origin != null) {
+            Biome fisherBiome = lootContext.getWorld().getBiome(new BlockPos(origin));
 
             // Category predicate is null, check exact biome
-            if(category == null || category.getValid().isEmpty()) {
-                if(biome != null && !biome.getValid().isEmpty()) {
-                    return biome.test(player.world, fisherBiome);
+            if (category == null || category.getValid().isEmpty()) {
+                if (biome != null && !biome.getValid().isEmpty()) {
+                    return biome.test(lootContext.getWorld(), fisherBiome);
                 }
             }
 
             // Category predicate is not null, check it
-             else if(!category.getValid().isEmpty()) {
-                 return category.test(fisherBiome.getCategory());
+            else if (!category.getValid().isEmpty()) {
+                return category.test(fisherBiome.getCategory());
             }
         }
 
         return false;
     }
 
-    public static LootCondition.Builder builder(RegistryKey<Biome> ... biomes) {
+    public static LootCondition.Builder builder(RegistryKey<Biome>... biomes) {
         return builder(Collections.emptyList(), Arrays.asList(biomes));
     }
 
-    public static LootCondition.Builder builder(Biome.Category ... categories) {
+    public static LootCondition.Builder builder(Biome.Category... categories) {
         return builder(Arrays.asList(categories), Collections.emptyList());
     }
 
@@ -109,13 +110,13 @@ public class BiomeLootCondition implements LootCondition {
             BiomeCategoryPredicate categoryPredicate;
             BiomePredicate biomePredicate;
 
-            if(obj.has("category")) {
+            if (obj.has("category")) {
                 categoryPredicate = BiomeCategoryPredicate.fromJson(obj.get("category"));
             } else {
                 categoryPredicate = BiomeCategoryPredicate.EMPTY;
             }
 
-            if(obj.has("biome")) {
+            if (obj.has("biome")) {
                 biomePredicate = BiomePredicate.fromJson(obj.get("biome"));
             } else {
                 biomePredicate = BiomePredicate.EMPTY;
