@@ -1,7 +1,19 @@
 {
-  "variants": {
-    "": [
-      { "model": "gofish:block/wooden_crate" }
-    ]
-  }
+	"variants": {
+		"": [
+			{
+				"model": "gofish:block/wooden_crate"
+			},
+			{
+				"model": "gofish:block/wooden_crate",
+				"y": 90
+			},
+			{
+				"model": "gofish:block/wooden_crate_0"
+			},
+			{
+				"model": "gofish:block/wooden_crate_1"
+			}
+		]
+	}
 }

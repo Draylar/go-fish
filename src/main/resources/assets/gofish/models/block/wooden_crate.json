@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "gofish:block/wooden_crate"
-  }
+	"parent": "block/cube",
+	"textures": {
+		"particle": "gofish:block/wooden_crate",
+		"up": "gofish:block/wooden_crate",
+		"down": "gofish:block/wooden_crate",
+		"north": "gofish:block/wooden_crate_bar",
+		"south": "gofish:block/wooden_crate_bar",
+		"east": "gofish:block/wooden_crate_strut",
+		"west": "gofish:block/wooden_crate_strut"
+	}
 }
