@@ -21,10 +21,15 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:wooden_crate"
+            "items": ["gofish:wooden_crate"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }

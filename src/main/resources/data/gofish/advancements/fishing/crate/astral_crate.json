@@ -21,10 +21,15 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:astral_crate"
+            "items": ["gofish:astral_crate"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }

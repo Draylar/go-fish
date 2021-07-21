@@ -21,10 +21,15 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:aquatic_astral_stew"
+            "items": ["gofish:aquatic_astral_stew"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }

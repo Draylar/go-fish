@@ -21,10 +21,15 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:baked_seaweed"
+            "items": ["gofish:baked_seaweed"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }
