@@ -21,16 +21,21 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:rainy_bass"
+            "items": ["gofish:rainy_bass"]
           },
           {
-            "item": "gofish:cloudy_crab"
+            "items": ["gofish:cloudy_crab"]
           },
           {
-            "item": "gofish:thundering_bass"
+            "items": ["gofish:thundering_bass"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }
