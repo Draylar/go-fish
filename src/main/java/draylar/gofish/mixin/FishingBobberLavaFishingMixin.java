@@ -37,7 +37,7 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
 
     @Shadow public abstract PlayerEntity getPlayerOwner();
 
-    @Shadow public abstract void remove();
+    @Shadow public abstract void remove(Entity.RemovalReason reason);
 
     private FishingBobberLavaFishingMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -89,7 +89,7 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
                 }
 
                 getPlayerOwner().playSound(SoundEvents.ENTITY_GENERIC_BURN, .5f, 1f);
-                remove();
+                remove(RemovalReason.KILLED);
             }
         }
 
