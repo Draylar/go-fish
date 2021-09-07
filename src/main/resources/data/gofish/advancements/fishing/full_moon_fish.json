@@ -21,19 +21,24 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:lunarfish"
+            "items": ["gofish:lunarfish"]
           },
           {
-            "item": "gofish:galaxy_starfish"
+            "items": ["gofish:galaxy_starfish"]
           },
           {
-            "item": "gofish:starry_salmon"
+            "items": ["gofish:starry_salmon"]
           },
           {
-            "item": "gofish:nebula_swordfish"
+            "items": ["gofish:nebula_swordfish"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }

@@ -41,7 +41,7 @@ public abstract class FishingBobberValidityMixin extends Entity {
         boolean mainHandHasRod = mainHandStack.getItem() instanceof ExtendedFishingRodItem;
         boolean offHandHasRod = offHandStack.getItem() instanceof ExtendedFishingRodItem;
 
-        if (!playerEntity.removed && playerEntity.isAlive() && (mainHandHasRod || offHandHasRod) && this.squaredDistanceTo(playerEntity) <= 1024.0D) {
+        if (!playerEntity.isRemoved() && playerEntity.isAlive() && (mainHandHasRod || offHandHasRod) && this.squaredDistanceTo(playerEntity) <= 1024.0D) {
             cir.setReturnValue(false);
         }
     }

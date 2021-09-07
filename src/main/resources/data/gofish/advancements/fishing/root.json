@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:fishing_rod"
+            "items": ["minecraft:fishing_rod"]
           }
         ]
       }

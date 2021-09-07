@@ -21,10 +21,15 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:grilled_blackstone_deluxe"
+            "items": ["gofish:grilled_blackstone_deluxe"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }

@@ -21,10 +21,15 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:golden_fish"
+            "items": ["gofish:golden_fish"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }

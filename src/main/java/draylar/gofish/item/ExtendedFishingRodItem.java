@@ -82,7 +82,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
 
                 // Find buffing items in player inventory
                 List<FishingBonus> found = new ArrayList<>();
-                for (ItemStack stack : user.inventory.main) {
+                for (ItemStack stack : user.getInventory().main) {
                     Item item = stack.getItem();
 
                     if (item instanceof FishingBonus) {

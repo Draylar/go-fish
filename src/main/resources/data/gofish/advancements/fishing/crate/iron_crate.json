@@ -21,10 +21,15 @@
       "conditions": {
         "items": [
           {
-            "item": "gofish:iron_crate"
+            "items": ["gofish:iron_crate"]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "fish"
+    ]
+  ]
 }

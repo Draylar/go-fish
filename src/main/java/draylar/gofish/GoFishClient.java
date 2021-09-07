@@ -39,7 +39,7 @@ public class GoFishClient implements ClientModInitializer {
     }
 
     public void registerFishingRodPredicates(Item item) {
-        FabricModelPredicateProviderRegistry.register(item, new Identifier("cast"), (itemStack, clientWorld, livingEntity) -> {
+        FabricModelPredicateProviderRegistry.register(item, new Identifier("cast"), (itemStack, clientWorld, livingEntity, i) -> {
             if (livingEntity == null) {
                 return 0.0F;
             } else {
