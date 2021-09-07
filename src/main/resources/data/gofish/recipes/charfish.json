@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gofish:oakfish"
+  },
+  "result": "gofish:charfish",
+  "experience": 1.25,
+  "cookingtime": 400
+}

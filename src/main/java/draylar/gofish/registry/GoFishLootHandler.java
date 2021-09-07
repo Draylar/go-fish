@@ -43,6 +43,9 @@ public class GoFishLootHandler {
                 lpb.with(ItemEntry.builder(GoFishItems.SLIMEFISH).weight(10).conditionally(BiomeLootCondition.builder(Biome.Category.SWAMP)));
                 lpb.with(ItemEntry.builder(GoFishItems.LILYFISH).weight(10).conditionally(BiomeLootCondition.builder(Biome.Category.SWAMP)));
 
+                // Ocean
+                lpb.with(ItemEntry.builder(GoFishItems.SEAWEED_EEL).weight(10).conditionally(BiomeLootCondition.builder(Biome.Category.OCEAN)));
+
                 // Mesa
                 lpb.with(ItemEntry.builder(GoFishItems.TERRAFISH).weight(10).conditionally(BiomeLootCondition.builder(Biome.Category.MESA)));
 
