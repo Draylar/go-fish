@@ -7,6 +7,7 @@ import draylar.gofish.api.SmeltingBobber;
 import draylar.gofish.item.ExtendedFishingRodItem;
 import draylar.gofish.registry.GoFishEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.FishingRodItem;
@@ -21,6 +22,11 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,73 +35,60 @@ import java.util.Random;
 @Mixin(FishingRodItem.class)
 public class FishingRodPropertyMixin {
 
-    /**
-     * @author Draylar
-     * @reason Go Fish extensively modifies the vanilla Fishing Lure with additional properties.
-     */
-    @Overwrite
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack heldStack = user.getStackInHand(hand);
-        Random random = world.random;
+    @Unique private PlayerEntity player;
+    @Unique private ItemStack heldStack;
 
-        if (user.fishHook != null) {
-            // Retrieve fishing bobber and damage Fishing Rod
-            if (!world.isClient) {
-                int damage = user.fishHook.use(heldStack);
-                heldStack.damage(damage, user, player -> player.sendToolBreakStatus(hand));
-            }
+    @Inject(method = "use", at = @At("HEAD"))
+    private void storeContext(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
+        this.heldStack = user.getStackInHand(hand);
+        this.player = user;
+    }
 
-            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, SoundCategory.NEUTRAL, 1.0F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-        } else {
-            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-
-            // Summon new fishing bobber
-            if (!world.isClient) {
-                boolean smeltBuff = false;
-                int bonusLure = 0;
-                int bonusLuck = 0;
-                int bonusExperience = 0;
-
-                // Find buffing items in player inventory
-                List<FishingBonus> found = new ArrayList<>();
-                for (ItemStack stack : user.getInventory().main) {
-                    Item item = stack.getItem();
-
-                    if (item instanceof FishingBonus) {
-                        FishingBonus bonus = (FishingBonus) item;
-
-                        if (!found.contains(bonus)) {
-                            if(bonus.shouldApply(world, user)) {
-                                found.add(bonus);
-                                smeltBuff = bonus.providesAutosmelt() || smeltBuff;
-                                bonusLure += bonus.getLure();
-                                bonusLuck += bonus.getLuckOfTheSea();
-                                bonusExperience += bonus.getBaseExperience();
-                            }
-                        }
-                    }
-                }
-
-                // Check if this rod autosmelts
-                boolean hasDeepfryEnchantment = EnchantmentHelper.getLevel(GoFishEnchantments.DEEPFRY, heldStack) != 0;
-                boolean rodAutosmelts = heldStack.getItem() instanceof ExtendedFishingRodItem && ((ExtendedFishingRodItem) heldStack.getItem()).autosmelts();
-                boolean smelts = hasDeepfryEnchantment || rodAutosmelts || smeltBuff;
-
-                // Calculate lure and luck
-                int lure = EnchantmentHelper.getLure(heldStack) + bonusLuck + bonusLure;
-                int lots = EnchantmentHelper.getLuckOfTheSea(heldStack) + bonusLuck + bonusLuck;
-
-                // Summon bobber with stats
-                FishingBobberEntity bobber = new FishingBobberEntity(user, world, lots, lure);
-                world.spawnEntity(bobber);
-                ((FireproofEntity) bobber).gf_setFireproof(false);
-                ((SmeltingBobber) bobber).gf_setSmelts(smelts);
-                ((ExperienceBobber) bobber).gf_setBaseExperience(1 + bonusExperience);
-            }
-
-            user.incrementStat(Stats.USED.getOrCreateStat(Items.FISHING_ROD));
+    @Redirect(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"))
+    private boolean modifyBobber(World world, Entity entity) {
+        if(entity instanceof FishingBobberEntity bobber) {
+            modifyBobber(world, bobber);
         }
 
-        return TypedActionResult.success(heldStack, world.isClient());
+        return world.spawnEntity(entity);
+    }
+
+    @Unique
+    private void modifyBobber(World world, FishingBobberEntity bobber) {
+        boolean smeltBuff = false;
+        int bonusLure = 0;
+        int bonusLuck = 0;
+        int bonusExperience = 0;
+
+        // Find buffing items in player inventory
+        List<FishingBonus> found = new ArrayList<>();
+        for (ItemStack stack : player.getInventory().main) {
+            Item item = stack.getItem();
+
+            if (item instanceof FishingBonus bonus) {
+                if (!found.contains(bonus)) {
+                    if(bonus.shouldApply(world, player)) {
+                        found.add(bonus);
+                        smeltBuff = bonus.providesAutosmelt() || smeltBuff;
+                        bonusLure += bonus.getLure();
+                        bonusLuck += bonus.getLuckOfTheSea();
+                        bonusExperience += bonus.getBaseExperience();
+                    }
+                }
+            }
+        }
+
+        // Check if this rod autosmelts
+        boolean hasDeepfryEnchantment = EnchantmentHelper.getLevel(GoFishEnchantments.DEEPFRY, heldStack) != 0;
+        boolean rodAutosmelts = heldStack.getItem() instanceof ExtendedFishingRodItem && ((ExtendedFishingRodItem) heldStack.getItem()).autosmelts();
+        boolean smelts = hasDeepfryEnchantment || rodAutosmelts || smeltBuff;
+
+        // Modify bobber statistics
+        ((FireproofEntity) bobber).gf_setFireproof(false);
+        ((SmeltingBobber) bobber).gf_setSmelts(smelts);
+        ((ExperienceBobber) bobber).gf_setBaseExperience(1 + bonusExperience);
+        FishingBobberEntityAccessor accessor = (FishingBobberEntityAccessor) bobber;
+        accessor.setLureLevel(accessor.getLureLevel() + bonusLure);
+        accessor.setLuckOfTheSeaLevel(accessor.getLuckOfTheSeaLevel() + bonusLuck);
     }
 }
