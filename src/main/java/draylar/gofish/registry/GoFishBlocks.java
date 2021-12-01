@@ -47,6 +47,7 @@ public class GoFishBlocks {
     public static Block SOUL_CRATE = registerCrate("soul_crate", new CrateBlock(FabricBlockSettings.copyOf(Blocks.STONE).breakByTool(FabricToolTags.PICKAXES, MiningLevels.IRON)), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8).rarity(Rarity.RARE), GoFish.id("gameplay/fishing/soul_crate"));
     public static Block GILDED_BLACKSTONE_CRATE = registerCrate("gilded_blackstone_crate", new CrateBlock(FabricBlockSettings.copyOf(Blocks.GILDED_BLACKSTONE).breakByTool(FabricToolTags.PICKAXES, MiningLevels.IRON)), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8).rarity(Rarity.UNCOMMON), GoFish.id("gameplay/fishing/gilded_blackstone_crate"));
     public static Block ASTRAL_CRATE = registerCrate("astral_crate", new AstralCrateBlock(FabricBlockSettings.copyOf(Blocks.END_STONE).breakByTool(FabricToolTags.PICKAXES, MiningLevels.IRON).nonOpaque()), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8).rarity(Rarity.EPIC), GoFish.id("gameplay/fishing/astral_crate"));
+    public static Block END_CRATE = registerCrate("end_crate", new AstralCrateBlock(FabricBlockSettings.copyOf(Blocks.END_STONE).breakByTool(FabricToolTags.PICKAXES, MiningLevels.DIAMOND)), new Item.Settings().group(GoFish.GROUP).fireproof().maxCount(8).rarity(Rarity.EPIC), GoFish.id("gameplay/fishing/end_crate"));
 
     public static <T extends Block> T register(String name, T block) {
         return Registry.register(Registry.BLOCK, GoFish.id(name), block);

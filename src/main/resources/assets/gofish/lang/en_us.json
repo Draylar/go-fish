@@ -33,6 +33,10 @@
   "item.gofish.thundering_bass": "Thundering Bass",
   "item.gofish.smoked_cloudy_crab": "Smoked Cloudy Crab",
   "item.gofish.blizzard_bass": "Blizzard Bass",
+  "item.gofish.omega_floater": "Omega Floater",
+  "item.gofish.dragonfish": "Dragonfish",
+  "item.gofish.chorus_cod": "Chorus Cod",
+  "item.gofish.portal_puffer": "Portal Puffer",
 
   "item.gofish.steamed_bass": "Steamed Bass",
   "item.gofish.steamed_bass.tooltip_1": "It almost disappeared in the oven,",
@@ -93,6 +97,7 @@
   "block.gofish.fiery_crate": "Fiery Crate",
   "block.gofish.supply_crate": "Supply Crate",
   "block.gofish.astral_crate": "Astral Crate",
+  "block.gofish.end_crate": "End Crate",
 
   "advancements.fishing.root.title": "Fishing Journey",
   "advancements.fishing.root.description": "Begin your fishing journey by obtaining a Fishing Rod.",

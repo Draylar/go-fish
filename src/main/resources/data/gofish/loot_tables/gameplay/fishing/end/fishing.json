@@ -36,7 +36,7 @@
           ],
           "weight": 5,
           "quality": 2,
-          "name": "gofish:gameplay/fishing/crates"
+          "name": "gofish:gameplay/fishing/end/crates"
         },
         {
           "type": "minecraft:loot_table",

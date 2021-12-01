@@ -8,7 +8,9 @@ import draylar.gofish.item.SoulLureItem;
 import draylar.gofish.item.TooltippedItem;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ChorusFruitItem;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
@@ -103,6 +105,10 @@ public class GoFishItems {
     public static final Item ENDFISH = register("endfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));
     public static final Item BAKED_ENDFISH = register("baked_endfish", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.8f).build()).group(GoFish.GROUP), 2));
     public static final Item ENDFISH_AND_CHORUS = register("endfish_and_chorus", new TooltippedItem(new Item.Settings().food(new FoodComponent.Builder().hunger(8).saturationModifier(1f).build()).group(GoFish.GROUP), 2));
+    public static final Item CHORUS_COD = register("chorus_cod", new ChorusFruitItem(new Item.Settings().food(new FoodComponent.Builder().hunger(6).build()).group(GoFish.GROUP).rarity(Rarity.EPIC)));
+    public static final Item DRAGONFISH = register("dragonfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(8).build()).group(GoFish.GROUP).rarity(Rarity.EPIC)));
+    public static final Item OMEGA_FLOATER = register("omega_floater", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).build()).group(GoFish.GROUP).rarity(Rarity.EPIC)));
+    public static final Item PORTAL_PUFFER = register("portal_puffer", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).build()).group(GoFish.GROUP).rarity(Rarity.EPIC)));
 
     // Full Moon fish
     public static final Item LUNARFISH = register("lunarfish", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).build()).group(GoFish.GROUP)));

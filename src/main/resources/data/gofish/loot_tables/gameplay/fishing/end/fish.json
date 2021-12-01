@@ -2,7 +2,7 @@
   "type": "minecraft:fishing",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
@@ -18,6 +18,26 @@
           "type": "minecraft:item",
           "weight": 5,
           "name": "gofish:ender_eel"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "name": "gofish:chorus_cod"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "gofish:dragonfish"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "gofish:omega_floater"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "gofish:portal_puffer"
         }
       ]
     }

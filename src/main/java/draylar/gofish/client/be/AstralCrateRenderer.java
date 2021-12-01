@@ -16,7 +16,7 @@ public class AstralCrateRenderer extends EndPortalBlockEntityRenderer<AstralCrat
 
     @Override
     public void render(AstralCrateBlockEntity astralCrate, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
-        this.renderSides(astralCrate, matrixStack.peek().getModel(), vertexConsumerProvider.getBuffer(this.getLayer()));
+        this.renderSides(astralCrate, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider.getBuffer(this.getLayer()));
     }
 
     private void renderSides(AstralCrateBlockEntity entity, Matrix4f matrix4f, VertexConsumer vertexConsumer) {
