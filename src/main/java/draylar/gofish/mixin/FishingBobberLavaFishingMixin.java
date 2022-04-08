@@ -18,6 +18,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +37,6 @@ import java.util.function.Consumer;
 public abstract class FishingBobberLavaFishingMixin extends Entity {
 
     @Shadow public abstract PlayerEntity getPlayerOwner();
-
     @Shadow public abstract void remove(Entity.RemovalReason reason);
 
     private FishingBobberLavaFishingMixin(EntityType<?> type, World world) {
@@ -46,10 +46,10 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
     // this mixin is used to determine whether a bobber is actually bobbing for fish
     @ModifyVariable(
             method = "tick",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z", ordinal = 0),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z", ordinal = 0),
             index = 2
     )
-    private float bobberInLava(float f) {
+    private float bobberInLava(float value) {
         BlockPos blockPos = this.getBlockPos();
         FluidState fluidState = this.world.getFluidState(blockPos);
 
@@ -78,7 +78,7 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
             }
 
             if (canFishInLava) {
-                f = fluidState.getHeight(this.world, blockPos);
+                value = fluidState.getHeight(this.world, blockPos);
             } else {
                 if(!getPlayerOwner().isCreative()) {
                     getPlayerOwner().getStackInHand(rodHand).damage(5, getPlayerOwner(), player -> player.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
@@ -93,7 +93,7 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
             }
         }
 
-        return f;
+        return value;
     }
 
     // Original check is used to determine whether the bobber should free-fall.
@@ -101,9 +101,9 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
     // note that the original method call is inversed so we also inverse ours
     @Redirect(
             method = "tick",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z", ordinal = 1)
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z", ordinal = 1)
     )
-    private boolean fallOutsideLiquid(FluidState fluid, Tag<Fluid> tag) {
+    private boolean fallOutsideLiquid(FluidState fluid, TagKey<Fluid> tag) {
         return !fluid.isEmpty();
     }
 
@@ -112,16 +112,16 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 0),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void fishingLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, float n, float o, float p, double q, double r, double s, BlockState blockState) {
+    private void fishingLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, float f, float o, float p, double x, double y, double z, BlockState blockState) {
         if (blockState.isOf(Blocks.LAVA)) {
             if (this.random.nextFloat() < 0.15F) {
-                serverWorld.spawnParticles(ParticleTypes.LAVA, q, r - 0.10000000149011612D, s, 1, o, 0.1D, p, 0.0D);
+                serverWorld.spawnParticles(ParticleTypes.LAVA, x, y - 0.1D, z, 1, o, 0.1D, p, 0.0D);
             }
 
-            float k = o * 0.04F;
-            float l = p * 0.04F;
-            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, q, r, s, 0, (double)l, 0.01D, (double)(-k), 1.0D);
-            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, q, r, s, 0, (double)(-l), 0.01D, (double)k, 1.0D);
+            float dZ = o * 0.04F;
+            float dX = p * 0.04F;
+            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, x, y, z, 0, dX, 0.01D, (-dZ), 1.0D);
+            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, x, y, z, 0, (-dX), 0.01D, dZ, 1.0D);
         }
     }
 
@@ -130,17 +130,17 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 1),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void fishSecondaryLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, float n, float o, float p, double q, double r, double s, BlockState blockState2) {
-        if (blockState2.isOf(Blocks.LAVA)) {
-            serverWorld.spawnParticles(ParticleTypes.LAVA, q, r, s, 2 + this.random.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
+    private void fishSecondaryLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, float f, float g, float h, double x, double y, double z, BlockState blockState) {
+        if (blockState.isOf(Blocks.LAVA)) {
+            serverWorld.spawnParticles(ParticleTypes.LAVA, x, y, z, 2 + this.random.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
         }
     }
 
     @Redirect(
             method = "getPositionType(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/entity/projectile/FishingBobberEntity$PositionType;",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z")
     )
-    private boolean isInValidLiquid(FluidState fluidState, Tag<Fluid> tag) {
+    private boolean isInValidLiquid(FluidState fluidState, TagKey<Fluid> tag) {
         return !fluidState.isEmpty();
     }
 }

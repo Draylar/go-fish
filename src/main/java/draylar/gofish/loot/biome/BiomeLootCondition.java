@@ -15,6 +15,7 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.util.JsonSerializer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
@@ -45,7 +46,7 @@ public class BiomeLootCondition implements LootCondition {
         Vec3d origin = lootContext.get(LootContextParameters.ORIGIN);
 
         if(origin != null) {
-            Biome fisherBiome = lootContext.getWorld().getBiome(new BlockPos(origin));
+            RegistryEntry<Biome> fisherBiome = lootContext.getWorld().getBiome(new BlockPos(origin));
 
             // Category predicate is null, check exact biome
             if (category == null || category.getValid().isEmpty()) {
@@ -56,7 +57,7 @@ public class BiomeLootCondition implements LootCondition {
 
             // Category predicate is not null, check it
             else if (!category.getValid().isEmpty()) {
-                return category.test(fisherBiome.getCategory());
+                return category.test(Biome.getCategory(fisherBiome));
             }
         }
 

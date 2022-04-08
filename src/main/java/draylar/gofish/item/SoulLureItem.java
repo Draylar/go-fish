@@ -19,8 +19,6 @@ import java.util.List;
 
 public class SoulLureItem extends Item implements FishingBonus {
 
-    public static final String SOUL_SAND_VALLEY = "minecraft:soul_sand_valley";
-
     public SoulLureItem(Settings settings) {
         super(settings);
     }
@@ -41,13 +39,6 @@ public class SoulLureItem extends Item implements FishingBonus {
 
     @Override
     public boolean shouldApply(World world, PlayerEntity player) {
-        Identifier id = world.getRegistryManager().get(Registry.BIOME_KEY).getId(world.getBiome(player.getBlockPos()));
-
-        if(id != null) {
-            // todo: make this a constant
-            return id.toString().equals(SOUL_SAND_VALLEY);
-        }
-
-        return false;
+        return world.getBiome(player.getBlockPos()).matchesKey(BiomeKeys.SOUL_SAND_VALLEY);
     }
 }

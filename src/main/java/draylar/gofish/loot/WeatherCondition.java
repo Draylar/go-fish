@@ -15,7 +15,10 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.util.JsonSerializer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
@@ -42,14 +45,15 @@ public class WeatherCondition implements LootCondition {
 
     @Override
     public Set<LootContextParameter<?>> getRequiredParameters() {
-        return ImmutableSet.of();
+        return ImmutableSet.of(LootContextParameters.THIS_ENTITY, LootContextParameters.ORIGIN);
     }
 
     @Override
     public boolean test(LootContext lootContext) {
-        Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
+        @Nullable Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
+        @Nullable Vec3d pos = lootContext.get(LootContextParameters.ORIGIN);
 
-        if(entity != null) {
+        if(entity != null && pos != null) {
             World world = entity.world;
 
             // If raining is required and the world is not raining, return false.
@@ -65,7 +69,7 @@ public class WeatherCondition implements LootCondition {
             // same check for snowing
             if (snowing) {
                 // >= .15 = no snow
-                if(world.getBiome(entity.getBlockPos()).getTemperature() >= .15) {
+                if(world.getBiome(entity.getBlockPos()).value().doesNotSnow(new BlockPos(pos))) {
                     return false;
                 }
 

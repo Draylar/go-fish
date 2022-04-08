@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "gofish:iron_crate",
+    "gofish:golden_crate",
+    "gofish:diamond_crate",
+    "gofish:frosted_crate",
+    "gofish:fiery_crate",
+    "gofish:soul_crate",
+    "gofish:gilded_blackstone_crate",
+    "gofish:astral_crate",
+    "gofish:end_crate"
+  ]
+}

@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -35,20 +37,16 @@ public class BiomePredicate {
         return valid;
     }
 
-    public boolean test(World world, Biome biome) {
-        Identifier id = world.getRegistryManager().get(Registry.BIOME_KEY).getId(biome);
-
-        if(id != null) {
-            String low = id.toString();
-
-            for (String s : valid) {
-                if (new Identifier(s).toString().equals(low)) {
+    public boolean test(World world, RegistryEntry<Biome> biome) {
+        return biome.matches(key -> {
+            for (String entry : valid) {
+                if (new Identifier(entry).toString().equals(key.toString())) {
                     return true;
                 }
             }
-        }
 
-        return false;
+            return false;
+        });
     }
 
     public JsonElement toJson() {
