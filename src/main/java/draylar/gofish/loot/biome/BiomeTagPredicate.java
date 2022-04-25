@@ -3,6 +3,7 @@ package draylar.gofish.loot.biome;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.world.biome.Biome;
 
@@ -10,17 +11,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BiomeCategoryPredicate {
+public class BiomeTagPredicate {
 
-    public static final BiomeCategoryPredicate EMPTY = new BiomeCategoryPredicate(Collections.emptyList());
+    public static final BiomeTagPredicate EMPTY = new BiomeTagPredicate(Collections.emptyList());
     private static final String VALID_KEY = "valid";
-    private final List<String> valid;
+    private final List<Tag<Biome>> valid;
 
-    public BiomeCategoryPredicate(List<String> valid) {
-        this.valid = valid;
-    }
+    public BiomeTagPredicate(List<Tag<Biome>> valid) { this.valid = valid; }
 
-    public BiomeCategoryPredicate(Builder builder) {
+    public BiomeTagPredicate(Builder builder) {
         this.valid = builder.valid;
     }
 
@@ -28,15 +27,14 @@ public class BiomeCategoryPredicate {
         return new Builder();
     }
 
-    public List<String> getValid() {
+    public List<Tag<Biome>> getValid() {
         return valid;
     }
 
-    public boolean test(Biome.Category category) {
-        String low = category.getName();
+    public boolean test(Biome biome) {
 
-        for(String s : valid) {
-            if(s.equals(low)) {
+        for(Tag<Biome> tag : valid) {
+            if(tag.values().contains(biome)) {
                 return true;
             }
         }
@@ -48,54 +46,54 @@ public class BiomeCategoryPredicate {
         JsonObject obj = new JsonObject();
         JsonArray arr = new JsonArray();
 
-        for(String s : valid) {
-            arr.add(s);
+        for(Tag<Biome> tag : valid) {
+//            arr.add(tag.);
         }
 
         obj.add(VALID_KEY, arr);
         return obj;
     }
 
-    public static BiomeCategoryPredicate fromJson(JsonElement element) {
+    public static BiomeTagPredicate fromJson(JsonElement element) {
         JsonObject obj = JsonHelper.asObject(element, VALID_KEY);
         JsonArray arr = obj.getAsJsonArray(VALID_KEY);
 
-        List<String> sArr = new ArrayList<>();
+        List<Tag<Biome>> sArr = new ArrayList<>();
         for (int i = 0; i < arr.size(); i++) {
-            sArr.add(arr.get(i).getAsString());
+//            sArr.add(Tag.Builder.create().read(arr.get(i)));
         }
 
-        return new BiomeCategoryPredicate(sArr);
+        return new BiomeTagPredicate(sArr);
     }
 
     public static class Builder {
 
-        private List<String> valid = new ArrayList<>();
+        private List<Tag<Biome>> valid = new ArrayList<>();
 
         private Builder() {
 
         }
 
-        public Builder setValid(List<String> valid) {
+        public Builder setValid(List<Tag<Biome>> valid) {
             this.valid = valid;
             return this;
         }
 
-        public Builder add(String category) {
-            if(!category.isEmpty()) {
-                this.valid.add(category);
+        public Builder add(Tag<Biome> tag) {
+            if(tag != null) {
+                this.valid.add(tag);
             }
 
             return this;
         }
 
-        public Builder of(BiomeCategoryPredicate biomePredicate) {
+        public Builder of(BiomeTagPredicate biomePredicate) {
             this.valid = biomePredicate.valid;
             return this;
         }
 
-        public BiomeCategoryPredicate build() {
-            return new BiomeCategoryPredicate(this);
+        public BiomeTagPredicate build() {
+            return new BiomeTagPredicate(this);
         }
     }
 }

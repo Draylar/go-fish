@@ -3,8 +3,10 @@ package draylar.gofish.item;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+//import net.minecraft.text.TranslatableText;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
@@ -25,7 +27,7 @@ public class TooltippedItem extends Item {
 
         if(lines > 0) {
             for (int i = 1; i <= lines; i++) {
-                tooltip.add(new TranslatableText(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
+                tooltip.add(MutableText.of(new TranslatableTextContent(String.format("%s.tooltip_%d", getTranslationKey(), i))).formatted(Formatting.GRAY));
             }
         }
     }

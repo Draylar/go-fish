@@ -13,8 +13,9 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -100,6 +101,6 @@ public class CrateItem extends BlockItem {
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(new TranslatableText("gofish.crate_tooltip").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+        tooltip.add(MutableText.of(new TranslatableTextContent("gofish.crate_tooltip")).formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
     }
 }
