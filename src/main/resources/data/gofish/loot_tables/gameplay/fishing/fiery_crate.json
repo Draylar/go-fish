@@ -7,7 +7,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:quartz",
           "functions": [
@@ -21,7 +21,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:gold_ingot",
           "functions": [
@@ -35,7 +35,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:gold_nugget",
           "functions": [
@@ -49,7 +49,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:blaze_rod",
           "functions": [
@@ -71,17 +71,17 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:crimson_fungus"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:warped_fungus"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:bone",
           "functions": [
@@ -95,7 +95,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:magma_cream",
           "functions": [
@@ -109,7 +109,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:nether_wart",
           "functions": [
@@ -131,7 +131,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:netherrack",
           "functions": [
@@ -145,7 +145,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:nether_bricks",
           "functions": [
@@ -159,7 +159,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:soul_sand",
           "functions": [
@@ -173,7 +173,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:gravel",
           "functions": [
@@ -198,17 +198,17 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 10,
           "name": "gofish:blaze_rod"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 10,
           "name": "gofish:skeletal_rod"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:blaze_rod",
           "functions": [
@@ -222,7 +222,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:skeletal_rod",
           "functions": [
@@ -247,17 +247,17 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:netherite_ingot"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:netherite_scrap"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "minecraft:gold_block"
         }
@@ -270,12 +270,12 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:bonefish"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:smokey_salmon",
           "functions": [
@@ -289,7 +289,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:magma_cod",
           "functions": [
@@ -303,7 +303,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:obsidian_halibut",
           "functions": [
@@ -317,7 +317,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:basalt_bass",
           "functions": [

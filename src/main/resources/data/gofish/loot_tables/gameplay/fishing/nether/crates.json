@@ -5,17 +5,17 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:golden_crate"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "gofish:fiery_crate"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "gofish:soul_crate",
           "conditions": [
@@ -23,14 +23,14 @@
               "condition": "gofish:match_biome",
               "biome": {
                 "valid": [
-                  "soul_sand_valley"
+                  "minecraft:soul_sand_valley"
                 ]
               }
             }
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "gofish:gilded_blackstone_crate",
           "conditions": [
@@ -38,7 +38,7 @@
               "condition": "gofish:match_biome",
               "biome": {
                 "valid": [
-                  "basalt_deltas"
+                  "minecraft:basalt_deltas"
                 ]
               }
             }

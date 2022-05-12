@@ -23,12 +23,12 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 15,
           "name": "gofish:ender_rod"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:ender_rod",
           "functions": [
@@ -42,12 +42,12 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 10,
           "name": "gofish:matrix_rod"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:matrix_rod",
           "functions": [
@@ -79,7 +79,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:obsidian",
           "functions": [
@@ -93,7 +93,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:crying_obsidian",
           "functions": [
@@ -107,7 +107,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:end_stone",
           "functions": [

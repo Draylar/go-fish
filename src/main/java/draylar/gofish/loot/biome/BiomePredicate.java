@@ -19,10 +19,10 @@ public class BiomePredicate {
 
     public static final BiomePredicate EMPTY = new BiomePredicate(Collections.emptyList());
     private static final String VALID_KEY = "valid";
-    private final List<String> valid;
+    private final List<RegistryKey<Biome>> valid;
 
     public BiomePredicate(List<String> valid) {
-        this.valid = valid;
+        this.valid = builder().setValidFromString(valid).valid;
     }
 
     private BiomePredicate(Builder builder) {
@@ -33,28 +33,25 @@ public class BiomePredicate {
         return new Builder();
     }
 
-    public List<String> getValid() {
+    public List<RegistryKey<Biome>> getValid() {
         return valid;
     }
 
     public boolean test(World world, RegistryEntry<Biome> biome) {
-        return biome.matches(key -> {
-            for (String entry : valid) {
-                if (new Identifier(entry).toString().equals(key.toString())) {
-                    return true;
-                }
+        for (RegistryKey<Biome> key : valid) {
+            if (biome.matchesKey(key)) {
+                return true;
             }
-
-            return false;
-        });
+        }
+        return false;
     }
 
     public JsonElement toJson() {
         JsonObject obj = new JsonObject();
         JsonArray arr = new JsonArray();
 
-        for(String s : valid) {
-            arr.add(s);
+        for(RegistryKey<Biome> rKey : valid) {
+            arr.add(rKey.getValue().toString());
         }
 
         obj.add(VALID_KEY, arr);
@@ -76,20 +73,36 @@ public class BiomePredicate {
 
     public static class Builder {
 
-        private List<String> valid;
+        private List<RegistryKey<Biome>> valid;
 
         private Builder() {
 
         }
 
-        public Builder setValid(List<String> valid) {
+        public Builder setValid(List<RegistryKey<Biome>> valid) {
             this.valid = valid;
+            return this;
+        }
+
+        public Builder setValidFromString(List<String> valid) {
+            List<RegistryKey<Biome>> rKeys = new ArrayList<>();
+            for (String str : valid) {
+                if (!valid.isEmpty()) {
+                    rKeys.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(str)));
+                }
+            }
+
+            return setValid(rKeys);
+        }
+
+        public Builder add(RegistryKey<Biome> biome) {
+            valid.add(biome);
             return this;
         }
 
         public Builder add(String biome) {
             if(!biome.isEmpty()) {
-                valid.add(biome);
+                valid.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(biome)));
             }
 
             return this;

@@ -7,7 +7,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 25,
           "name": "minecraft:iron_ore",
           "functions": [
@@ -21,7 +21,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 25,
           "name": "minecraft:coal_ore",
           "functions": [
@@ -35,7 +35,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 25,
           "name": "minecraft:coal",
           "functions": [
@@ -49,12 +49,12 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 15,
           "name": "minecraft:iron_ingot"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 20,
           "name": "minecraft:cobblestone",
           "functions": [
@@ -68,7 +68,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 15,
           "name": "minecraft:stone",
           "functions": [
@@ -82,7 +82,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 10,
           "name": "minecraft:torch",
           "functions": [
@@ -96,12 +96,12 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:diamond"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:gold_ore",
           "functions": [
@@ -115,7 +115,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:gold_ingot",
           "functions": [
@@ -129,7 +129,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:redstone",
           "functions": [
@@ -143,7 +143,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:lapis_lazuli",
           "functions": [
@@ -157,7 +157,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 2,
           "name": "minecraft:redstone_ore",
           "functions": [
