@@ -8,7 +8,8 @@
     "Draylar"
   ],
   "contributors": [
-    "Birgliss"
+    "Birgliss",
+    "foul-fortune-feline"
   ],
   "license": "CC0-1.0",
   "icon": "assets/gofish/icon.png",
@@ -28,7 +29,7 @@
   "depends": {
     "fabricloader": ">=0.14.4",
     "fabric": ">=0.51.2+1.19",
-    "minecraft": ">=1.19-alpha.22.17.a",
+    "minecraft": "1.19.x",
     "java": ">=17"
   }
 }

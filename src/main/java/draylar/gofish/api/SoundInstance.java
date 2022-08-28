@@ -1,9 +1,7 @@
 package draylar.gofish.api;
 
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.random.AbstractRandom;
-
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class SoundInstance {
 
@@ -28,16 +26,16 @@ public class SoundInstance {
         return sound;
     }
 
-    public float getVolume(AbstractRandom random) {
+    public float getVolume(Random random) {
         return volume.get(random);
     }
 
-    public float getPitch(AbstractRandom random) {
+    public float getPitch(Random random) {
         return pitch.get(random);
     }
 
     @FunctionalInterface
     public interface FloatGetter {
-        float get(AbstractRandom random);
+        float get(Random random);
     }
 }

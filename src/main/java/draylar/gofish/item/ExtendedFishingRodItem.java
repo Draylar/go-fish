@@ -16,17 +16,15 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-//import net.minecraft.text.TranslatableText;
 import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable {
 
@@ -58,11 +56,11 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack heldStack = user.getStackInHand(hand);
-        AbstractRandom random = world.random;
+        Random random = world.random;
 
-        if (user.fishHook != null) {
+        if(user.fishHook != null) {
             // Retrieve fishing bobber and damage Fishing Rod
-            if (!world.isClient) {
+            if(!world.isClient) {
                 int damage = user.fishHook.use(heldStack);
                 heldStack.damage(damage, user, player -> player.sendToolBreakStatus(hand));
             }
@@ -72,7 +70,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
             world.playSound(null, user.getX(), user.getY(), user.getZ(), cast.getSound(), SoundCategory.NEUTRAL, cast.getVolume(random), cast.getPitch(random));
 
             // Summon new fishing bobber
-            if (!world.isClient) {
+            if(!world.isClient) {
                 boolean smeltBuff = false;
                 int bonusLure = 0;
                 int bonusLuck = 0;
@@ -88,10 +86,10 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
                 for (ItemStack stack : user.getInventory().main) {
                     Item item = stack.getItem();
 
-                    if (item instanceof FishingBonus) {
+                    if(item instanceof FishingBonus) {
                         FishingBonus bonus = (FishingBonus) item;
 
-                        if (!found.contains(bonus)) {
+                        if(!found.contains(bonus)) {
                             if(bonus.shouldApply(world, user)) {
                                 found.add(bonus);
                                 smeltBuff = bonus.providesAutosmelt() || smeltBuff;

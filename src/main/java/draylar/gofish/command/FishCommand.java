@@ -5,7 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import draylar.gofish.impl.GoFishLootTables;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
@@ -16,8 +16,6 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class FishCommand {
                 }))
                 .build();
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, b) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, access, dedicated) -> {
             dispatcher.getRoot().addChild(root);
         });
     }
