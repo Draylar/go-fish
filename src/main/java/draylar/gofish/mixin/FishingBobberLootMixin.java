@@ -38,9 +38,9 @@ public abstract class FishingBobberLootMixin extends Entity {
         assert world.getServer() != null;
 
         // todo: better way to check for nether?
-        if(world.getDimension().isUltrawarm()) {
+        if(world.getDimension().ultrawarm()) {
             return this.world.getServer().getLootManager().getTable(GoFishLootTables.NETHER_FISHING);
-        } else if (world.getDimension().hasEnderDragonFight()) {
+        } else if (!world.getDimension().bedWorks()) {
             return this.world.getServer().getLootManager().getTable(GoFishLootTables.END_FISHING);
         }
 
@@ -54,7 +54,7 @@ public abstract class FishingBobberLootMixin extends Entity {
             locals = LocalCapture.CAPTURE_FAILHARD)
     private void setFireproof(ItemStack usedItem, CallbackInfoReturnable<Integer> cir, PlayerEntity playerEntity, int i, LootContext.Builder builder, LootTable lootTable, List list, Iterator var7, ItemStack itemStack, ItemEntity itemEntity, double d, double e, double f, double g) {
         // If the user is fishing in the nether, tell the dropped loot to ignore lava/fire burning until pickup
-        if(world.getDimension().isUltrawarm()) {
+        if(world.getDimension().ultrawarm()) {
             ((FireproofEntity) itemEntity).gf_setFireproof(true);
         }
     }

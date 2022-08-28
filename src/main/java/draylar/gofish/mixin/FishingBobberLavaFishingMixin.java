@@ -7,7 +7,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.fluid.Fluid;
@@ -17,7 +16,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.FluidTags;
-import net.minecraft.tag.Tag;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -30,8 +28,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
-import java.util.function.Consumer;
 
 @Mixin(FishingBobberEntity.class)
 public abstract class FishingBobberLavaFishingMixin extends Entity {
@@ -112,16 +108,15 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 0),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void fishingLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, float f, float o, float p, double x, double y, double z, BlockState blockState) {
-        if (blockState.isOf(Blocks.LAVA)) {
-            if (this.random.nextFloat() < 0.15F) {
-                serverWorld.spawnParticles(ParticleTypes.LAVA, x, y - 0.1D, z, 1, o, 0.1D, p, 0.0D);
+    private void fishingLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, BlockPos blockPos, float f, float g, float h, double d, double e, double j, BlockState blockState) {
+            if (blockState.isOf(Blocks.LAVA)) {
+            if (this.random.nextFloat() < 0.15f) {
+                serverWorld.spawnParticles(ParticleTypes.LAVA, d, e - (double)0.1f, j, 1, g, 0.1, h, 0.0);
             }
-
-            float dZ = o * 0.04F;
-            float dX = p * 0.04F;
-            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, x, y, z, 0, dX, 0.01D, (-dZ), 1.0D);
-            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, x, y, z, 0, (-dX), 0.01D, dZ, 1.0D);
+            float dZ = f * 0.04F;
+            float dX = h * 0.04F;
+            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, d, e, j, 0, dX, 0.01D, (-dZ), 1.0D);
+            serverWorld.spawnParticles(GoFishParticles.LAVA_FISHING, d, e, j, 0, (-dX), 0.01D, dZ, 1.0D);
         }
     }
 
@@ -130,9 +125,9 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 1),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void fishSecondaryLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, float f, float g, float h, double x, double y, double z, BlockState blockState) {
+    private void fishSecondaryLavaParticles(BlockPos pos, CallbackInfo ci, ServerWorld serverWorld, int i, BlockPos blockPos, float f, float g, float h, double d, double e, double j, BlockState blockState) {
         if (blockState.isOf(Blocks.LAVA)) {
-            serverWorld.spawnParticles(ParticleTypes.LAVA, x, y, z, 2 + this.random.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
+            serverWorld.spawnParticles(ParticleTypes.LAVA, pos.getX(), pos.getY(), pos.getZ(), 2 + this.random.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
         }
     }
 

@@ -14,11 +14,14 @@ import net.minecraft.item.Vanishable;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+//import net.minecraft.text.TranslatableText;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.random.AbstractRandom;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -55,7 +58,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack heldStack = user.getStackInHand(hand);
-        Random random = world.random;
+        AbstractRandom random = world.random;
 
         if (user.fishHook != null) {
             // Retrieve fishing bobber and damage Fishing Rod
@@ -126,8 +129,8 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
     @Override
     public Text getName(ItemStack stack) {
         Text name = super.getName(stack);
-        if(name instanceof TranslatableText) {
-            ((TranslatableText) name).formatted(formatting);
+        if(name instanceof MutableText) {
+            ((MutableText) name).formatted(formatting);
         }
 
         return name;
@@ -139,7 +142,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
 
         if(lines > 0) {
             for (int i = 1; i <= lines; i++) {
-                tooltip.add(new TranslatableText(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
+                tooltip.add(MutableText.of(new TranslatableTextContent(String.format("%s.tooltip_%d", getTranslationKey(), i))).formatted(Formatting.GRAY));
             }
         }
     }

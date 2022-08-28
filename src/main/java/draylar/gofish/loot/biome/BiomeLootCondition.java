@@ -5,13 +5,12 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import draylar.gofish.registry.GoFishLoot;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.JsonSerializer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -23,10 +22,10 @@ import java.util.*;
 
 public class BiomeLootCondition implements LootCondition {
 
-    protected final BiomeCategoryPredicate category;
+    protected final BiomeTagPredicate category;
     protected final BiomePredicate biome;
 
-    public BiomeLootCondition(BiomeCategoryPredicate category, BiomePredicate biome) {
+    public BiomeLootCondition(BiomeTagPredicate category, BiomePredicate biome) {
         this.category = category;
         this.biome = biome;
     }
@@ -57,7 +56,7 @@ public class BiomeLootCondition implements LootCondition {
 
             // Category predicate is not null, check it
             else if (!category.getValid().isEmpty()) {
-                return category.test(Biome.getCategory(fisherBiome));
+                return category.test(fisherBiome);
             }
         }
 
@@ -65,36 +64,36 @@ public class BiomeLootCondition implements LootCondition {
     }
 
     public static LootCondition.Builder builder(RegistryKey<Biome>... biomes) {
-        return builder(Collections.emptyList(), Arrays.asList(biomes));
+        return builder(Collections.emptyList(), List.of(biomes));
     }
 
-    public static LootCondition.Builder builder(Biome.Category... categories) {
+    public static LootCondition.Builder builder(TagKey<Biome>... categories) {
         return builder(Arrays.asList(categories), Collections.emptyList());
     }
 
-    public static LootCondition.Builder builder(List<Biome.Category> categories, List<RegistryKey<Biome>> biomes) {
+    public static LootCondition.Builder builder(List<TagKey<Biome>> categories, List<RegistryKey<Biome>> biomes) {
         List<String> stringCats = new ArrayList<>();
         List<String> stringBiomes = new ArrayList<>();
 
-        categories.forEach(category -> stringCats.add(category.getName()));
+        categories.forEach(category -> stringCats.add(category.id().toString()));
         biomes.forEach(biome -> stringBiomes.add(biome.getValue().toString()));
 
-        return builder(BiomeCategoryPredicate.builder().setValid(stringCats), BiomePredicate.builder().setValid(stringBiomes));
+        return builder(BiomeTagPredicate.builder().setValidByString(stringCats), BiomePredicate.builder().setValidFromString(stringBiomes));
     }
 
     public static LootCondition.Builder builder(String category, String biome) {
-        return builder(BiomeCategoryPredicate.builder().add(category));
+        return builder(BiomeTagPredicate.builder().add(category), BiomePredicate.builder().add(biome));
     }
 
-    public static LootCondition.Builder builder(BiomeCategoryPredicate.Builder categoryBuilder) {
+    public static LootCondition.Builder builder(BiomeTagPredicate.Builder categoryBuilder) {
         return builder(categoryBuilder, BiomePredicate.builder());
     }
 
     public static LootCondition.Builder builder(BiomePredicate.Builder biomeBuilder) {
-        return builder(BiomeCategoryPredicate.builder(), biomeBuilder);
+        return builder(BiomeTagPredicate.builder(), biomeBuilder);
     }
 
-    public static LootCondition.Builder builder(BiomeCategoryPredicate.Builder categoryBuilder, BiomePredicate.Builder biomeBuilder) {
+    public static LootCondition.Builder builder(BiomeTagPredicate.Builder categoryBuilder, BiomePredicate.Builder biomeBuilder) {
         return () -> new BiomeLootCondition(categoryBuilder.build(), biomeBuilder.build());
     }
 
@@ -108,13 +107,13 @@ public class BiomeLootCondition implements LootCondition {
 
         @Override
         public BiomeLootCondition fromJson(JsonObject obj, JsonDeserializationContext context) {
-            BiomeCategoryPredicate categoryPredicate;
+            BiomeTagPredicate categoryPredicate;
             BiomePredicate biomePredicate;
 
             if (obj.has("category")) {
-                categoryPredicate = BiomeCategoryPredicate.fromJson(obj.get("category"));
+                categoryPredicate = BiomeTagPredicate.fromJson(obj.get("category"));
             } else {
-                categoryPredicate = BiomeCategoryPredicate.EMPTY;
+                categoryPredicate = BiomeTagPredicate.EMPTY;
             }
 
             if (obj.has("biome")) {

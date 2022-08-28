@@ -55,9 +55,9 @@ public class FishCommand {
                 .build(LootContextTypes.FISHING);
 
         LootTable table;
-        if(world.getDimension().isUltrawarm()) {
+        if(world.getDimension().ultrawarm()) {
             table = world.getServer().getLootManager().getTable(GoFishLootTables.NETHER_FISHING);
-        } else if(world.getDimension().hasEnderDragonFight()) {
+        } else if(!world.getDimension().bedWorks()) {
             table = world.getServer().getLootManager().getTable(GoFishLootTables.END_FISHING);
         } else {
             table = world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);
