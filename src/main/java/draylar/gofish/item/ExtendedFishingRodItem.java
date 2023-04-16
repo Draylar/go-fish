@@ -230,8 +230,8 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
             return this;
         }
 
-        public Builder nightLuck(boolean nightLuck) {
-            this.nightLuck = nightLuck;
+        public Builder nightLuck() {
+            this.nightLuck = true;
             return this;
         }
 

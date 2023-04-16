@@ -70,6 +70,7 @@ public class GoFishItems {
             .durability(150)
             .color(Formatting.LIGHT_PURPLE)
             .tooltipLines(1)
+            .nightLuck()
             .build());
 
     // fish
