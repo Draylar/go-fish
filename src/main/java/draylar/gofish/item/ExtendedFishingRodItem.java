@@ -107,8 +107,8 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
                 boolean smelts = hasDeepfryEnchantment || rodAutosmelts || smeltBuff;
 
                 // Calculate lure and luck
-                int lure = EnchantmentHelper.getLure(heldStack) + baseLure + bonusLuck + bonusLure;
-                int lots = EnchantmentHelper.getLuckOfTheSea(heldStack) + baseLOTS + bonusLuck + bonusLuck;
+                int lure = EnchantmentHelper.getLure(heldStack) + baseLure + bonusLure;
+                int lots = EnchantmentHelper.getLuckOfTheSea(heldStack) + baseLOTS + bonusLuck;
 
                 // Summon bobber with stats
                 FishingBobberEntity bobber = new FishingBobberEntity(user, world, lots, lure);
