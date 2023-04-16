@@ -115,7 +115,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
                 world.spawnEntity(bobber);
                 ((FireproofEntity) bobber).gf_setFireproof(lavaProof);
                 ((SmeltingBobber) bobber).gf_setSmelts(smelts);
-                ((ExperienceBobber) bobber).gf_setBaseExperience(1 + bonusExperience);
+                ((ExperienceBobber) bobber).gf_setBaseExperience(this.baseExperience + bonusExperience);
             }
 
             user.incrementStat(Stats.USED.getOrCreateStat(this));
