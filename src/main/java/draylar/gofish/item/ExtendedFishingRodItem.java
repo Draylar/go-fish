@@ -1,7 +1,13 @@
 package draylar.gofish.item;
 
-import draylar.gofish.GoFish;
-import draylar.gofish.api.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import draylar.gofish.api.ExperienceBobber;
+import draylar.gofish.api.FireproofEntity;
+import draylar.gofish.api.FishingBonus;
+import draylar.gofish.api.SmeltingBobber;
+import draylar.gofish.api.SoundInstance;
 import draylar.gofish.registry.GoFishEnchantments;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -10,23 +16,18 @@ import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Vanishable;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable {
+public class ExtendedFishingRodItem extends FishingRodItem {
 
     private final SoundInstance retrieve;
     private final SoundInstance cast;
@@ -140,7 +141,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
 
         if(lines > 0) {
             for (int i = 1; i <= lines; i++) {
-                tooltip.add(MutableText.of(new TranslatableTextContent(String.format("%s.tooltip_%d", getTranslationKey(), i))).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
             }
         }
     }
@@ -164,7 +165,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
 
     public static class Builder {
 
-        private Item.Settings settings = new Item.Settings().group(GoFish.GROUP).maxDamage(100);
+        private Item.Settings settings = new Item.Settings().maxDamage(100);
         private SoundInstance retrieve = new SoundInstance(SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, 1.0F, SoundInstance.DEFAULT_PITCH);
         private SoundInstance cast = new SoundInstance(SoundEvents.ENTITY_FISHING_BOBBER_THROW, 0.5F, SoundInstance.DEFAULT_PITCH);
         private int baseLure = 0;

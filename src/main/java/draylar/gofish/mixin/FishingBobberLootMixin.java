@@ -14,6 +14,8 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -37,10 +39,10 @@ public abstract class FishingBobberLootMixin extends Entity {
     private LootTable getTable(LootManager lootManager, Identifier id) {
         assert world.getServer() != null;
 
-        // todo: better way to check for nether?
-        if(world.getDimension().ultrawarm()) {
+        final DimensionType dimension = world.getDimension();
+        if(dimension.ultrawarm()) {
             return this.world.getServer().getLootManager().getTable(GoFishLootTables.NETHER_FISHING);
-        } else if (!world.getDimension().bedWorks()) {
+        } else if (!dimension.bedWorks()) {
             return this.world.getServer().getLootManager().getTable(GoFishLootTables.END_FISHING);
         }
 

@@ -1,5 +1,7 @@
 package draylar.gofish.command;
 
+import java.util.List;
+
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -16,8 +18,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-
-import java.util.List;
+import net.minecraft.world.dimension.DimensionType;
 
 public class FishCommand {
 
@@ -53,9 +54,10 @@ public class FishCommand {
                 .build(LootContextTypes.FISHING);
 
         LootTable table;
-        if(world.getDimension().ultrawarm()) {
+        final DimensionType dimension = world.getDimension();
+        if(dimension.ultrawarm()) {
             table = world.getServer().getLootManager().getTable(GoFishLootTables.NETHER_FISHING);
-        } else if(!world.getDimension().bedWorks()) {
+        } else if (!dimension.bedWorks()) {
             table = world.getServer().getLootManager().getTable(GoFishLootTables.END_FISHING);
         } else {
             table = world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);

@@ -1,5 +1,9 @@
 package draylar.gofish.loot;
 
+import java.util.Set;
+
+import org.jetbrains.annotations.Nullable;
+
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -15,9 +19,6 @@ import net.minecraft.util.JsonSerializer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Set;
 
 public class WeatherCondition implements LootCondition {
 
@@ -66,7 +67,7 @@ public class WeatherCondition implements LootCondition {
             // same check for snowing
             if (snowing) {
                 // >= .15 = no snow
-                if(world.getBiome(entity.getBlockPos()).value().doesNotSnow(new BlockPos(pos))) {
+                if(world.getBiome(entity.getBlockPos()).value().doesNotSnow(new BlockPos((int) Math.floor(pos.x), (int) Math.floor(pos.y), (int) Math.floor(pos.z)))) {
                     return false;
                 }
 

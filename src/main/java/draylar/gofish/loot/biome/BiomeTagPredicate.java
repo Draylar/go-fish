@@ -1,18 +1,19 @@
 package draylar.gofish.loot.biome;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.biome.Biome;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
+import net.minecraft.world.biome.Biome;
 
 public class BiomeTagPredicate {
 
@@ -85,14 +86,14 @@ public class BiomeTagPredicate {
         public Builder setValidByString(List<String> valid) {
             List<TagKey<Biome>> tagKeys = new ArrayList<>();
             for (String str : valid) {
-                tagKeys.add(TagKey.of(Registry.BIOME_KEY, new Identifier(str)));
+                tagKeys.add(TagKey.of(RegistryKeys.BIOME, new Identifier(str)));
             }
             return setValid(tagKeys);
         }
 
         public Builder add(String tag) {
             if(!tag.isEmpty()) {
-                this.valid.add(TagKey.of(Registry.BIOME_KEY, new Identifier(tag)));
+                this.valid.add(TagKey.of(RegistryKeys.BIOME, new Identifier(tag)));
             }
 
             return this;

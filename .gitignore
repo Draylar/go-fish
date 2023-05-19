@@ -1,7 +1,10 @@
 # Project exclude paths
-/.gradle/
+/bin/
 /build/
-/run/
-/logs/
-/.idea/
 /go-fish.iml
+/logs/
+/remappedSrc/
+/run/
+/.gradle/
+/.idea/
+/.vscode/

@@ -10,12 +10,12 @@ import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.JsonSerializer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
 
 import java.util.*;
@@ -45,7 +45,7 @@ public class BiomeLootCondition implements LootCondition {
         Vec3d origin = lootContext.get(LootContextParameters.ORIGIN);
 
         if(origin != null) {
-            RegistryEntry<Biome> fisherBiome = lootContext.getWorld().getBiome(new BlockPos(origin));
+            RegistryEntry<Biome> fisherBiome = lootContext.getWorld().getBiome(new BlockPos((int) Math.floor(origin.x), (int) Math.floor(origin.y), (int) Math.floor(origin.z)));
 
             // Category predicate is null, check exact biome
             if (category == null || category.getValid().isEmpty()) {

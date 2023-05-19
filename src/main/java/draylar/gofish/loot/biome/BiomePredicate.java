@@ -5,9 +5,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -88,7 +88,7 @@ public class BiomePredicate {
             List<RegistryKey<Biome>> rKeys = new ArrayList<>();
             for (String str : valid) {
                 if (!valid.isEmpty()) {
-                    rKeys.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(str)));
+                    rKeys.add(RegistryKey.of(RegistryKeys.BIOME, new Identifier(str)));
                 }
             }
 
@@ -102,7 +102,7 @@ public class BiomePredicate {
 
         public Builder add(String biome) {
             if(!biome.isEmpty()) {
-                valid.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(biome)));
+                valid.add(RegistryKey.of(RegistryKeys.BIOME, new Identifier(biome)));
             }
 
             return this;

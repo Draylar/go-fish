@@ -8,14 +8,14 @@ import draylar.gofish.mixin.LocationPredicateBuilderAccessor;
 import draylar.gofish.mixin.LootTableBuilderAccessor;
 import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.LocationCheckLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.LocationPredicate;
-import net.minecraft.tag.BiomeTags;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
 
 public class GoFishLootHandler {
 
@@ -38,24 +38,24 @@ public class GoFishLootHandler {
                 // In most situations, only 1-2 fish are added per biome or area, so the chance for that fish is still ~5-10%.
 
                 // Cold Fish in Icy biomes
-                lpb.with(ItemEntry.builder(GoFishItems.ICICLE_FISH).weight(10).conditionally(BiomeLootCondition.builder(GoFishTags.ICY)).build());
-                lpb.with(ItemEntry.builder(GoFishItems.SNOWBALL_FISH).weight(10).conditionally(BiomeLootCondition.builder(GoFishTags.ICY)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.ICICLE_FISH).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.ICY)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.SNOWBALL_FISH).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.ICY)).build());
 
                 // Swamp
-                lpb.with(ItemEntry.builder(GoFishItems.SLIMEFISH).weight(10).conditionally(BiomeLootCondition.builder(GoFishTags.SWAMP)).build());
-                lpb.with(ItemEntry.builder(GoFishItems.LILYFISH).weight(10).conditionally(BiomeLootCondition.builder(GoFishTags.SWAMP)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.SLIMEFISH).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.SWAMP)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.LILYFISH).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.SWAMP)).build());
 
                 // Ocean
-                lpb.with(ItemEntry.builder(GoFishItems.SEAWEED_EEL).weight(10).conditionally(BiomeLootCondition.builder(BiomeTags.IS_OCEAN)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.SEAWEED_EEL).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.OCEAN)).build());
 
                 // Mesa
-                lpb.with(ItemEntry.builder(GoFishItems.TERRAFISH).weight(10).conditionally(BiomeLootCondition.builder(BiomeTags.IS_BADLANDS)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.TERRAFISH).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.MESA)).build());
 
                 // General Plains
-                lpb.with(ItemEntry.builder(GoFishItems.CARROT_CARP).weight(10).conditionally(BiomeLootCondition.builder(GoFishTags.PLAINS)).build());
-                lpb.with(ItemEntry.builder(GoFishItems.OAKFISH).weight(10).conditionally(BiomeLootCondition.builder(GoFishTags.PLAINS)).build());
-                lpb.with(ItemEntry.builder(GoFishItems.CARROT_CARP).weight(10).conditionally(BiomeLootCondition.builder(BiomeTags.IS_FOREST)).build());
-                lpb.with(ItemEntry.builder(GoFishItems.OAKFISH).weight(10).conditionally(BiomeLootCondition.builder(BiomeTags.IS_FOREST)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.CARROT_CARP).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.PLAINS)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.OAKFISH).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.PLAINS)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.CARROT_CARP).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.FOREST)).build());
+                lpb.with(ItemEntry.builder(GoFishItems.OAKFISH).weight(10).conditionally(BiomeLootCondition.builder(ConventionalBiomeTags.FOREST)).build());
 
                 // Misc
                 lpb.with(ItemEntry.builder(GoFishItems.LUNARFISH).weight(50).conditionally(FullMoonCondition.builder()).build());
