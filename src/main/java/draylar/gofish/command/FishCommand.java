@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.command.CommandManager;
@@ -47,20 +48,20 @@ public class FishCommand {
         ServerPlayerEntity player = context.getSource().getPlayer();
         ServerWorld world = context.getSource().getWorld();
 
-        LootContext lootContext = new LootContext.Builder(serverCommandSource.getWorld())
-                .parameter(LootContextParameters.ORIGIN, player.getPos())
-                .parameter(LootContextParameters.TOOL, player.getStackInHand(player.getActiveHand()))
-                .optionalParameter(LootContextParameters.THIS_ENTITY, serverCommandSource.getEntity())
+        LootContextParameterSet lootContext = new LootContextParameterSet.Builder(serverCommandSource.getWorld())
+                .add(LootContextParameters.ORIGIN, player.getPos())
+                .add(LootContextParameters.TOOL, player.getStackInHand(player.getActiveHand()))
+                .addOptional(LootContextParameters.THIS_ENTITY, serverCommandSource.getEntity())
                 .build(LootContextTypes.FISHING);
 
         LootTable table;
         final DimensionType dimension = world.getDimension();
         if(dimension.ultrawarm()) {
-            table = world.getServer().getLootManager().getTable(GoFishLootTables.NETHER_FISHING);
+            table = world.getServer().getLootManager().getLootTable(GoFishLootTables.NETHER_FISHING);
         } else if (!dimension.bedWorks()) {
-            table = world.getServer().getLootManager().getTable(GoFishLootTables.END_FISHING);
+            table = world.getServer().getLootManager().getLootTable(GoFishLootTables.END_FISHING);
         } else {
-            table = world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);
+            table = world.getServer().getLootManager().getLootTable(LootTables.FISHING_GAMEPLAY);
         }
 
         for(int z = 0; z < times; z++){

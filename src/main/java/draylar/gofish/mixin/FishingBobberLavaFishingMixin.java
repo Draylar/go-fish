@@ -47,7 +47,7 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
     )
     private float bobberInLava(float value) {
         BlockPos blockPos = this.getBlockPos();
-        FluidState fluidState = this.world.getFluidState(blockPos);
+        FluidState fluidState = this.getWorld().getFluidState(blockPos);
 
         if (!fluidState.isIn(FluidTags.LAVA)) {
             return value;
@@ -62,13 +62,13 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
             ExtendedFishingRodItem usedRod = (ExtendedFishingRodItem) mainHandItem;
 
             if (usedRod.canFishInLava()) {
-                return fluidState.getHeight(this.world, blockPos);
+                return fluidState.getHeight(this.getWorld(), blockPos);
             }
         } else if (offHandItem instanceof ExtendedFishingRodItem) {
             ExtendedFishingRodItem usedRod = (ExtendedFishingRodItem) offHandItem;
 
             if (usedRod.canFishInLava()) {
-                return fluidState.getHeight(this.world, blockPos);
+                return fluidState.getHeight(this.getWorld(), blockPos);
             }
         }
 
@@ -77,8 +77,8 @@ public abstract class FishingBobberLavaFishingMixin extends Entity {
                     player -> player.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         }
 
-        if (world instanceof ServerWorld) {
-            ((ServerWorld) world).spawnParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 5, 0, 1, 0, 0);
+        if (getWorld() instanceof ServerWorld) {
+            ((ServerWorld) getWorld()).spawnParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 5, 0, 1, 0, 0);
         }
 
         getPlayerOwner().playSound(SoundEvents.ENTITY_GENERIC_BURN, .5f, 1f);

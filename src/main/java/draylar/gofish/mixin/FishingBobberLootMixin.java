@@ -12,6 +12,7 @@ import net.minecraft.loot.LootManager;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
@@ -35,28 +36,28 @@ public abstract class FishingBobberLootMixin extends Entity {
 
     @Redirect(
             method = "use",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/loot/LootManager;getTable(Lnet/minecraft/util/Identifier;)Lnet/minecraft/loot/LootTable;"))
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/loot/LootManager;getLootTable(Lnet/minecraft/util/Identifier;)Lnet/minecraft/loot/LootTable;"))
     private LootTable getTable(LootManager lootManager, Identifier id) {
-        assert world.getServer() != null;
+        assert getWorld().getServer() != null;
 
-        final DimensionType dimension = world.getDimension();
+        final DimensionType dimension = getWorld().getDimension();
         if(dimension.ultrawarm()) {
-            return this.world.getServer().getLootManager().getTable(GoFishLootTables.NETHER_FISHING);
+            return this.getWorld().getServer().getLootManager().getLootTable(GoFishLootTables.NETHER_FISHING);
         } else if (!dimension.bedWorks()) {
-            return this.world.getServer().getLootManager().getTable(GoFishLootTables.END_FISHING);
+            return this.getWorld().getServer().getLootManager().getLootTable(GoFishLootTables.END_FISHING);
         }
 
         // Default
-        return this.world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);
+        return this.getWorld().getServer().getLootManager().getLootTable(LootTables.FISHING_GAMEPLAY);
     }
 
     @Inject(
             method = "use",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;setVelocity(DDD)V"),
             locals = LocalCapture.CAPTURE_FAILHARD)
-    private void setFireproof(ItemStack usedItem, CallbackInfoReturnable<Integer> cir, PlayerEntity playerEntity, int i, LootContext.Builder builder, LootTable lootTable, List list, Iterator var7, ItemStack itemStack, ItemEntity itemEntity, double d, double e, double f, double g) {
+    private void setFireproof(ItemStack usedItem, CallbackInfoReturnable<Integer> cir, PlayerEntity playerEntity, int i, LootContextParameterSet lootContextParameterSet, LootTable lootTable, List list, Iterator var7, ItemStack itemStack, ItemEntity itemEntity, double d, double e, double f, double g) {
         // If the user is fishing in the nether, tell the dropped loot to ignore lava/fire burning until pickup
-        if(world.getDimension().ultrawarm()) {
+        if(getWorld().getDimension().ultrawarm()) {
             ((FireproofEntity) itemEntity).gf_setFireproof(true);
         }
     }

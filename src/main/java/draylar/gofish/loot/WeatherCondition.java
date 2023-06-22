@@ -52,7 +52,7 @@ public class WeatherCondition implements LootCondition {
         @Nullable Vec3d pos = lootContext.get(LootContextParameters.ORIGIN);
 
         if(entity != null && pos != null) {
-            World world = entity.world;
+            World world = entity.getWorld();
 
             // If raining is required and the world is not raining, return false.
             if (raining && !world.isRaining()) {

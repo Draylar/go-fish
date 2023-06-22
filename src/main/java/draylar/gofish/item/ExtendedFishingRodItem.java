@@ -78,7 +78,7 @@ public class ExtendedFishingRodItem extends FishingRodItem {
                 int bonusExperience = 0;
 
                 // Check for night luck
-                if(nightLuck && user.world.isNight()) {
+                if(nightLuck && user.getWorld().isNight()) {
                     bonusLuck++;
                 }
 
