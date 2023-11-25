@@ -1,9 +1,7 @@
 package draylar.gofish.loot.moon;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
+import com.mojang.serialization.Codec;
 import draylar.gofish.registry.GoFishLoot;
 import net.minecraft.entity.Entity;
 import net.minecraft.loot.condition.LootCondition;
@@ -11,15 +9,13 @@ import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.util.JsonSerializer;
 
-import java.util.*;
+import java.util.Set;
 
-public class FullMoonCondition implements LootCondition {
+public record FullMoonCondition() implements LootCondition {
 
-    public FullMoonCondition() {
-
-    }
+    public static final FullMoonCondition INSTANCE = new FullMoonCondition();
+    public static final Codec<FullMoonCondition> CODEC = Codec.unit(INSTANCE);
 
     @Override
     public LootConditionType getType() {
@@ -44,19 +40,6 @@ public class FullMoonCondition implements LootCondition {
     }
 
     public static LootCondition.Builder builder() {
-        return FullMoonCondition::new;
-    }
-
-    public static class Serializer implements JsonSerializer<FullMoonCondition> {
-
-        @Override
-        public void toJson(JsonObject jsonObject, FullMoonCondition condition, JsonSerializationContext jsonSerializationContext) {
-
-        }
-
-        @Override
-        public FullMoonCondition fromJson(JsonObject obj, JsonDeserializationContext context) {
-            return new FullMoonCondition();
-        }
+        return () -> INSTANCE;
     }
 }

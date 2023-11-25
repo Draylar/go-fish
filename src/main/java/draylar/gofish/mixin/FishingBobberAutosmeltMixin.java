@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.world.World;
@@ -47,13 +48,13 @@ public abstract class FishingBobberAutosmeltMixin extends Entity implements Smel
     )
     private ItemEntity processOutput(ItemEntity itemEntity) {
         if(gf_smelts) {
-            Optional<SmeltingRecipe> cooked = getWorld().getRecipeManager().getFirstMatch(
+            Optional<RecipeEntry<SmeltingRecipe>> cooked = getWorld().getRecipeManager().getFirstMatch(
                     RecipeType.SMELTING,
                     new SimpleInventory(itemEntity.getStack()),
                     getWorld()
             );
 
-            cooked.ifPresent(smeltingRecipe -> itemEntity.setStack(smeltingRecipe.getOutput(getWorld().getRegistryManager())));
+            cooked.ifPresent(smeltingRecipe -> itemEntity.setStack(smeltingRecipe.value().getResult(getWorld().getRegistryManager())));
         }
 
         return itemEntity;

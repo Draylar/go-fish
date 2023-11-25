@@ -1,34 +1,34 @@
 package draylar.gofish.loot.biome;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
+import com.google.gson.JsonParseException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.JsonOps;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import net.minecraft.util.Util;
 import net.minecraft.world.biome.Biome;
+import org.jetbrains.annotations.Nullable;
 
-public class BiomeTagPredicate {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+public record BiomeTagPredicate(List<TagKey<Biome>> valid) {
+
+    public static final Codec<BiomeTagPredicate> CODEC = RecordCodecBuilder.create(
+            instance -> instance.group(
+                            TagKey.unprefixedCodec(RegistryKeys.BIOME).listOf().fieldOf("valid").forGetter(BiomeTagPredicate::valid)
+                    )
+                    .apply(instance, BiomeTagPredicate::new)
+    );
     public static final BiomeTagPredicate EMPTY = new BiomeTagPredicate(Collections.emptyList());
-    private static final String VALID_KEY = "valid";
-    private final List<TagKey<Biome>> valid;
 
-    public BiomeTagPredicate(List<TagKey<Biome>> valid) { this.valid = valid; }
-
-    public BiomeTagPredicate(Builder builder) {
-        this.valid = builder.valid;
-    }
-
-    public static Builder builder() {
-        return new Builder();
+    public static BiomeTagPredicate create(List<TagKey<Biome>> valid) {
+        return new BiomeTagPredicate(valid);
     }
 
     public List<TagKey<Biome>> getValid() {
@@ -47,35 +47,19 @@ public class BiomeTagPredicate {
     }
 
     public JsonElement toJson() {
-        JsonObject obj = new JsonObject();
-        JsonArray arr = new JsonArray();
-
-        for(TagKey<Biome> tag : valid) {
-            arr.add(tag.id().toString());
-        }
-
-        obj.add(VALID_KEY, arr);
-        return obj;
+        return Util.getResult(CODEC.encodeStart(JsonOps.INSTANCE, this), IllegalStateException::new);
     }
 
-    public static BiomeTagPredicate fromJson(JsonElement element) {
-        JsonObject obj = JsonHelper.asObject(element, VALID_KEY);
-        JsonArray arr = obj.getAsJsonArray(VALID_KEY);
-
-        List<String> sArr = new ArrayList<>();
-        for (int i = 0; i < arr.size(); i++) {
-            sArr.add(arr.get(i).getAsString());
-        }
-
-        return BiomeTagPredicate.builder().setValidByString(sArr).build();
+    public static BiomeTagPredicate fromJson(@Nullable JsonElement json) {
+        return Util.getResult(CODEC.parse(JsonOps.INSTANCE, json), JsonParseException::new);
     }
 
     public static class Builder {
 
         private List<TagKey<Biome>> valid = new ArrayList<>();
 
-        private Builder() {
-
+        public static Builder create() {
+            return new BiomeTagPredicate.Builder();
         }
 
         public Builder setValid(List<TagKey<Biome>> valid) {
@@ -105,7 +89,7 @@ public class BiomeTagPredicate {
         }
 
         public BiomeTagPredicate build() {
-            return new BiomeTagPredicate(this);
+            return new BiomeTagPredicate(this.valid);
         }
     }
 }

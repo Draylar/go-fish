@@ -1,13 +1,6 @@
 package draylar.gofish.item;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import draylar.gofish.api.ExperienceBobber;
-import draylar.gofish.api.FireproofEntity;
-import draylar.gofish.api.FishingBonus;
-import draylar.gofish.api.SmeltingBobber;
-import draylar.gofish.api.SoundInstance;
+import draylar.gofish.api.*;
 import draylar.gofish.registry.GoFishEnchantments;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -26,6 +19,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExtendedFishingRodItem extends FishingRodItem {
 
