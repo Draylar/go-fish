@@ -22,14 +22,13 @@
       "draylar.gofish.GoFishClient"
     ]
   },
-  "accessWidener": "gofish.accesswidener",
   "mixins": [
     "go-fish.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.4",
-    "fabric": ">=0.51.2+1.19",
-    "minecraft": "1.19.x",
-    "java": ">=17"
+    "java": ">=17",
+    "minecraft": ">=${minecraft_version}",
+    "fabric-api": ">=${fabric_version}",
+    "fabricloader": ">=${loader_version}"
   }
 }

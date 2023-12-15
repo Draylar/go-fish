@@ -3,10 +3,7 @@ package draylar.gofish;
 import draylar.gofish.command.FishCommand;
 import draylar.gofish.registry.*;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.BrewingRecipeRegistry;
 import net.minecraft.util.Identifier;
@@ -15,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 
 public class GoFish implements ModInitializer {
 
-    public static final ItemGroup GROUP = FabricItemGroupBuilder.build(id("group"), () -> new ItemStack(GoFishItems.GOLDEN_FISH));
     public static final Logger LOGGER = LogManager.getLogger();
 
     @Override

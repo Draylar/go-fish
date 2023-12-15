@@ -36,24 +36,12 @@ public abstract class FishingBobberAutosmeltMixin extends Entity implements Smel
         this.gf_smelts = value;
     }
 
-    @ModifyVariable(
-            method = "use",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/ItemEntity;setVelocity(DDD)V",
-                    shift = At.Shift.AFTER
-            ),
-            index = 9
-    )
+    @ModifyVariable(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;setVelocity(DDD)V", shift = At.Shift.AFTER), index = 9)
     private ItemEntity processOutput(ItemEntity itemEntity) {
-        if(gf_smelts) {
-            Optional<SmeltingRecipe> cooked = world.getRecipeManager().getFirstMatch(
-                    RecipeType.SMELTING,
-                    new SimpleInventory(itemEntity.getStack()),
-                    world
-            );
+        if (gf_smelts) {
+            Optional<SmeltingRecipe> cooked = getWorld().getRecipeManager().getFirstMatch(RecipeType.SMELTING, new SimpleInventory(itemEntity.getStack()), getWorld());
 
-            cooked.ifPresent(smeltingRecipe -> itemEntity.setStack(smeltingRecipe.getOutput()));
+            cooked.ifPresent(smeltingRecipe -> itemEntity.setStack(smeltingRecipe.getOutput(this.getWorld().getRegistryManager())));
         }
 
         return itemEntity;

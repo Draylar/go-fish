@@ -2,19 +2,22 @@ package draylar.gofish.registry;
 
 import draylar.gofish.GoFish;
 import draylar.gofish.particle.CustomDefaultParticleType;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.minecraft.client.particle.FishingParticle;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class GoFishParticles {
 
     public static final DefaultParticleType LAVA_FISHING = register("lava_fishing", false);
 
     private static DefaultParticleType register(String name, boolean alwaysShow) {
-        return Registry.register(Registry.PARTICLE_TYPE, GoFish.id(name), new CustomDefaultParticleType(alwaysShow));
+        return Registry.register(Registries.PARTICLE_TYPE, GoFish.id(name), new CustomDefaultParticleType(alwaysShow));
     }
 
     public static void init() {
-
+        ParticleFactoryRegistry.getInstance().register(GoFishParticles.LAVA_FISHING, FishingParticle.Factory::new);
     }
 
     private GoFishParticles() {

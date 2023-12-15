@@ -10,12 +10,12 @@ import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.JsonSerializer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
 import java.util.*;
@@ -44,9 +44,8 @@ public class BiomeLootCondition implements LootCondition {
     public boolean test(LootContext lootContext) {
         Vec3d origin = lootContext.get(LootContextParameters.ORIGIN);
 
-        if(origin != null) {
-            RegistryEntry<Biome> fisherBiome = lootContext.getWorld().getBiome(new BlockPos(origin));
-
+        if (origin != null) {
+            RegistryEntry<Biome> fisherBiome = lootContext.getWorld().getBiome(BlockPos.ofFloored(origin));
             // Category predicate is null, check exact biome
             if (category == null || category.getValid().isEmpty()) {
                 if (biome != null && !biome.getValid().isEmpty()) {
@@ -63,10 +62,12 @@ public class BiomeLootCondition implements LootCondition {
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     public static LootCondition.Builder builder(RegistryKey<Biome>... biomes) {
         return builder(Collections.emptyList(), List.of(biomes));
     }
 
+    @SuppressWarnings("unchecked")
     public static LootCondition.Builder builder(TagKey<Biome>... categories) {
         return builder(Arrays.asList(categories), Collections.emptyList());
     }

@@ -1,6 +1,5 @@
 package draylar.gofish.item;
 
-import draylar.gofish.GoFish;
 import draylar.gofish.api.*;
 import draylar.gofish.registry.GoFishEnchantments;
 import net.minecraft.client.item.TooltipContext;
@@ -10,13 +9,11 @@ import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Vanishable;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -26,7 +23,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable {
+public class ExtendedFishingRodItem extends FishingRodItem {
 
     private final SoundInstance retrieve;
     private final SoundInstance cast;
@@ -39,7 +36,8 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
     private final Formatting formatting;
     private final int lines;
 
-    public ExtendedFishingRodItem(Settings settings, SoundInstance retrieve, SoundInstance cast, int baseLure, int baseLOTS, int baseExperience, boolean autosmelt, boolean lavaProof, boolean nightLuck, Formatting formatting, int tooltipLines) {
+    public ExtendedFishingRodItem(Settings settings, SoundInstance retrieve, SoundInstance cast, int baseLure, int baseLOTS, int baseExperience, boolean autosmelt, boolean lavaProof,
+            boolean nightLuck, Formatting formatting, int tooltipLines) {
         super(settings);
         this.retrieve = retrieve;
         this.cast = cast;
@@ -58,9 +56,9 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
         ItemStack heldStack = user.getStackInHand(hand);
         Random random = world.random;
 
-        if(user.fishHook != null) {
+        if (user.fishHook != null) {
             // Retrieve fishing bobber and damage Fishing Rod
-            if(!world.isClient) {
+            if (!world.isClient()) {
                 int damage = user.fishHook.use(heldStack);
                 heldStack.damage(damage, user, player -> player.sendToolBreakStatus(hand));
             }
@@ -70,14 +68,14 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
             world.playSound(null, user.getX(), user.getY(), user.getZ(), cast.getSound(), SoundCategory.NEUTRAL, cast.getVolume(random), cast.getPitch(random));
 
             // Summon new fishing bobber
-            if(!world.isClient) {
+            if (!world.isClient()) {
                 boolean smeltBuff = false;
                 int bonusLure = 0;
                 int bonusLuck = 0;
                 int bonusExperience = 0;
 
                 // Check for night luck
-                if(nightLuck && user.world.isNight()) {
+                if (nightLuck && user.getWorld().isNight()) {
                     bonusLuck++;
                 }
 
@@ -86,11 +84,11 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
                 for (ItemStack stack : user.getInventory().main) {
                     Item item = stack.getItem();
 
-                    if(item instanceof FishingBonus) {
+                    if (item instanceof FishingBonus) {
                         FishingBonus bonus = (FishingBonus) item;
 
-                        if(!found.contains(bonus)) {
-                            if(bonus.shouldApply(world, user)) {
+                        if (!found.contains(bonus)) {
+                            if (bonus.shouldApply(world, user)) {
                                 found.add(bonus);
                                 smeltBuff = bonus.providesAutosmelt() || smeltBuff;
                                 bonusLure += bonus.getLure();
@@ -127,7 +125,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
     @Override
     public Text getName(ItemStack stack) {
         Text name = super.getName(stack);
-        if(name instanceof MutableText) {
+        if (name instanceof MutableText) {
             ((MutableText) name).formatted(formatting);
         }
 
@@ -138,9 +136,9 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        if(lines > 0) {
+        if (lines > 0) {
             for (int i = 1; i <= lines; i++) {
-                tooltip.add(MutableText.of(new TranslatableTextContent(String.format("%s.tooltip_%d", getTranslationKey(), i))).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
             }
         }
     }
@@ -164,7 +162,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
 
     public static class Builder {
 
-        private Item.Settings settings = new Item.Settings().group(GoFish.GROUP).maxDamage(100);
+        private Item.Settings settings = new Item.Settings().maxDamage(100);
         private SoundInstance retrieve = new SoundInstance(SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, 1.0F, SoundInstance.DEFAULT_PITCH);
         private SoundInstance cast = new SoundInstance(SoundEvents.ENTITY_FISHING_BOBBER_THROW, 0.5F, SoundInstance.DEFAULT_PITCH);
         private int baseLure = 0;

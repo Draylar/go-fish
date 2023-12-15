@@ -2,7 +2,6 @@ package draylar.gofish.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 
 /*
@@ -12,10 +11,7 @@ import net.minecraft.entity.EquipmentSlot;
 public class DeepfryEnchantment extends Enchantment {
 
     public DeepfryEnchantment() {
-        super(Rarity.RARE, EnchantmentTarget.FISHING_ROD, new EquipmentSlot[] {
-                EquipmentSlot.MAINHAND,
-                EquipmentSlot.OFFHAND
-        });
+        super(Rarity.RARE, EnchantmentTarget.FISHING_ROD, new EquipmentSlot[] { EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND });
     }
 
     @Override

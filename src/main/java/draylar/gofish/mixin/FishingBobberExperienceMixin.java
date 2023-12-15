@@ -15,13 +15,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
- * This mixin is responsible for allowing Fishing Bobbers to have a customizable amount of base experience gain per catch.
- * For usage, cast a {@link FishingBobberEntity} to {@link ExperienceBobber}, and manipulate the base experience through the setter provided.
+ * This mixin is responsible for allowing Fishing Bobbers to have a customizable amount of base experience gain per catch. For usage, cast a {@link FishingBobberEntity} to {@link ExperienceBobber},
+ * and manipulate the base experience through the setter provided.
  */
 @Mixin(FishingBobberEntity.class)
 public abstract class FishingBobberExperienceMixin extends Entity implements ExperienceBobber {
 
-    @Shadow public abstract PlayerEntity getPlayerOwner();
+    @Shadow
+    public abstract PlayerEntity getPlayerOwner();
 
     @Unique
     private int gf_baseExperience = 1;
@@ -40,12 +41,9 @@ public abstract class FishingBobberExperienceMixin extends Entity implements Exp
         this.gf_baseExperience = experience;
     }
 
-    @Redirect(
-            method = "use",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z", ordinal = 1)
-    )
+    @Redirect(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z", ordinal = 1))
     private boolean modifyExperience(World world, Entity entity) {
         ServerPlayerEntity player = (ServerPlayerEntity) getPlayerOwner();
-        return player.world.spawnEntity(new ExperienceOrbEntity(player.world, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, this.random.nextInt(6) + gf_baseExperience));
+        return player.getWorld().spawnEntity(new ExperienceOrbEntity(player.getWorld(), player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, this.random.nextInt(6) + gf_baseExperience));
     }
 }

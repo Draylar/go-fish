@@ -15,8 +15,7 @@
     "FishingRodPropertyMixin",
     "ItemEntityFireproofMixin",
     "LocationPredicateBuilderAccessor",
-    "LootTableBuilderAccessor",
-    "ParticleManagerMixin"
+    "LootTableBuilderAccessor"
   ],
   "client": [],
   "injectors": {

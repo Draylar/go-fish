@@ -9,15 +9,12 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -43,7 +40,7 @@ public class CrateItem extends BlockItem {
     public ActionResult useOnBlock(ItemUsageContext context) {
         PlayerEntity player = context.getPlayer();
 
-        if(player != null && player.isSneaking()) {
+        if (player != null && player.isSneaking()) {
             return ActionResult.FAIL;
         }
 
@@ -53,8 +50,8 @@ public class CrateItem extends BlockItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         // only open crate if user is sneaking
-        if(user.isSneaking()) {
-            if(!world.isClient) {
+        if (user.isSneaking()) {
+            if (!world.isClient()) {
                 // drop loot
                 getDrops((ServerWorld) world, loot, user.getPos()).forEach(stack -> {
                     ItemScatterer.spawn(world, user.getX(), user.getY(), user.getZ(), stack);
@@ -62,7 +59,7 @@ public class CrateItem extends BlockItem {
             }
 
             // remove 1x from inventory for non-creative players
-            if(!user.isCreative()) {
+            if (!user.isCreative()) {
                 user.getStackInHand(hand).decrement(1);
             }
 
@@ -73,21 +70,18 @@ public class CrateItem extends BlockItem {
     }
 
     /**
-     * Retrieves the loot table drops for the given Identifier.
-     * If no loot table exists at the given Identifier, an empty list is returned.
+     * Retrieves the loot table drops for the given Identifier. If no loot table exists at the given Identifier, an empty list is returned.
+     * 
      * @param identifier loot table Identifier
      * @return list of drops generated from the loot table
      */
     private List<ItemStack> getDrops(ServerWorld world, Identifier identifier, Vec3d pos) {
         List<ItemStack> output = new ArrayList<>();
 
-        if (world != null && !world.isClient) {
+        if (world != null && !world.isClient()) {
             // set up loot objects
-            LootTable supplier = Objects.requireNonNull(world.getServer()).getLootManager().getTable(identifier);
-            LootContext.Builder builder =
-                    new LootContext.Builder(world)
-                            .random(world.random)
-                            .parameter(LootContextParameters.ORIGIN, pos);
+            LootTable supplier = Objects.requireNonNull(world.getServer()).getLootManager().getLootTable(identifier);
+            LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder(world).add(LootContextParameters.ORIGIN, pos);
 
             // build & add loot to output
             List<ItemStack> stacks = supplier.generateLoot(builder.build(LootContextTypes.CHEST));
@@ -101,6 +95,6 @@ public class CrateItem extends BlockItem {
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(MutableText.of(new TranslatableTextContent("gofish.crate_tooltip")).formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+        tooltip.add(Text.translatable("gofish.crate_tooltip").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
     }
 }

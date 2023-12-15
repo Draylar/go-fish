@@ -47,11 +47,13 @@ public class WeatherCondition implements LootCondition {
 
     @Override
     public boolean test(LootContext lootContext) {
-        @Nullable Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
-        @Nullable Vec3d pos = lootContext.get(LootContextParameters.ORIGIN);
+        @Nullable
+        Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
+        @Nullable
+        Vec3d pos = lootContext.get(LootContextParameters.ORIGIN);
 
-        if(entity != null && pos != null) {
-            World world = entity.world;
+        if (entity != null && pos != null) {
+            World world = entity.getWorld();
 
             // If raining is required and the world is not raining, return false.
             if (raining && !world.isRaining()) {
@@ -66,7 +68,7 @@ public class WeatherCondition implements LootCondition {
             // same check for snowing
             if (snowing) {
                 // >= .15 = no snow
-                if(world.getBiome(entity.getBlockPos()).value().doesNotSnow(new BlockPos(pos))) {
+                if (world.getBiome(entity.getBlockPos()).value().doesNotSnow(BlockPos.ofFloored(pos))) {
                     return false;
                 }
 
@@ -95,9 +97,7 @@ public class WeatherCondition implements LootCondition {
 
         @Override
         public WeatherCondition fromJson(JsonObject obj, JsonDeserializationContext context) {
-            return new WeatherCondition(
-                    obj.has("raining") && obj.get("raining").getAsBoolean(),
-                    obj.has("thundering") && obj.get("thundering").getAsBoolean(),
+            return new WeatherCondition(obj.has("raining") && obj.get("raining").getAsBoolean(), obj.has("thundering") && obj.get("thundering").getAsBoolean(),
                     obj.has("snowing") && obj.get("snowing").getAsBoolean());
         }
     }

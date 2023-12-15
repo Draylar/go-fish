@@ -3,11 +3,12 @@ package draylar.gofish.loot.biome;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -50,7 +51,7 @@ public class BiomePredicate {
         JsonObject obj = new JsonObject();
         JsonArray arr = new JsonArray();
 
-        for(RegistryKey<Biome> rKey : valid) {
+        for (RegistryKey<Biome> rKey : valid) {
             arr.add(rKey.getValue().toString());
         }
 
@@ -70,7 +71,6 @@ public class BiomePredicate {
         return new BiomePredicate(sArr);
     }
 
-
     public static class Builder {
 
         private List<RegistryKey<Biome>> valid;
@@ -88,7 +88,7 @@ public class BiomePredicate {
             List<RegistryKey<Biome>> rKeys = new ArrayList<>();
             for (String str : valid) {
                 if (!valid.isEmpty()) {
-                    rKeys.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(str)));
+                    rKeys.add(RegistryKey.of(RegistryKeys.BIOME, new Identifier(str)));
                 }
             }
 
@@ -101,8 +101,8 @@ public class BiomePredicate {
         }
 
         public Builder add(String biome) {
-            if(!biome.isEmpty()) {
-                valid.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(biome)));
+            if (!biome.isEmpty()) {
+                valid.add(RegistryKey.of(RegistryKeys.BIOME, new Identifier(biome)));
             }
 
             return this;
@@ -118,4 +118,3 @@ public class BiomePredicate {
         }
     }
 }
-

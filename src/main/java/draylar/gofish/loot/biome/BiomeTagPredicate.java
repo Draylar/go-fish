@@ -3,11 +3,12 @@ package draylar.gofish.loot.biome;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.tag.TagKey;
+
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 
 import java.util.ArrayList;
@@ -20,7 +21,9 @@ public class BiomeTagPredicate {
     private static final String VALID_KEY = "valid";
     private final List<TagKey<Biome>> valid;
 
-    public BiomeTagPredicate(List<TagKey<Biome>> valid) { this.valid = valid; }
+    public BiomeTagPredicate(List<TagKey<Biome>> valid) {
+        this.valid = valid;
+    }
 
     public BiomeTagPredicate(Builder builder) {
         this.valid = builder.valid;
@@ -36,8 +39,8 @@ public class BiomeTagPredicate {
 
     public boolean test(RegistryEntry<Biome> biome) {
 
-        for(TagKey<Biome> tag : valid) {
-            if(biome.isIn(tag)) {
+        for (TagKey<Biome> tag : valid) {
+            if (biome.isIn(tag)) {
                 return true;
             }
         }
@@ -49,7 +52,7 @@ public class BiomeTagPredicate {
         JsonObject obj = new JsonObject();
         JsonArray arr = new JsonArray();
 
-        for(TagKey<Biome> tag : valid) {
+        for (TagKey<Biome> tag : valid) {
             arr.add(tag.id().toString());
         }
 
@@ -85,14 +88,14 @@ public class BiomeTagPredicate {
         public Builder setValidByString(List<String> valid) {
             List<TagKey<Biome>> tagKeys = new ArrayList<>();
             for (String str : valid) {
-                tagKeys.add(TagKey.of(Registry.BIOME_KEY, new Identifier(str)));
+                tagKeys.add(TagKey.of(RegistryKeys.BIOME, new Identifier(str)));
             }
             return setValid(tagKeys);
         }
 
         public Builder add(String tag) {
-            if(!tag.isEmpty()) {
-                this.valid.add(TagKey.of(Registry.BIOME_KEY, new Identifier(tag)));
+            if (!tag.isEmpty()) {
+                this.valid.add(TagKey.of(RegistryKeys.BIOME, new Identifier(tag)));
             }
 
             return this;
