@@ -88,7 +88,7 @@ public class FishingRodPropertyMixin {
         ((SmeltingBobber) bobber).gf_setSmelts(smelts);
         ((ExperienceBobber) bobber).gf_setBaseExperience(1 + bonusExperience);
         FishingBobberEntityAccessor accessor = (FishingBobberEntityAccessor) bobber;
-        accessor.setLureLevel(accessor.getLureLevel() + bonusLure);
+        accessor.setLureLevel(Math.min((accessor.getLureLevel() + bonusLure),5));
         accessor.setLuckOfTheSeaLevel(accessor.getLuckOfTheSeaLevel() + bonusLuck);
     }
 }

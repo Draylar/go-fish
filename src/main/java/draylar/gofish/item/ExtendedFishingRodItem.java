@@ -107,15 +107,15 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
                 boolean smelts = hasDeepfryEnchantment || rodAutosmelts || smeltBuff;
 
                 // Calculate lure and luck
-                int lure = EnchantmentHelper.getLure(heldStack) + baseLure + bonusLuck + bonusLure;
-                int lots = EnchantmentHelper.getLuckOfTheSea(heldStack) + baseLOTS + bonusLuck + bonusLuck;
+                int lure = Math.min((EnchantmentHelper.getLure(heldStack) + baseLure + bonusLure),5);
+                int lots = EnchantmentHelper.getLuckOfTheSea(heldStack) + baseLOTS + bonusLuck;
 
                 // Summon bobber with stats
                 FishingBobberEntity bobber = new FishingBobberEntity(user, world, lots, lure);
                 world.spawnEntity(bobber);
                 ((FireproofEntity) bobber).gf_setFireproof(lavaProof);
                 ((SmeltingBobber) bobber).gf_setSmelts(smelts);
-                ((ExperienceBobber) bobber).gf_setBaseExperience(1 + bonusExperience);
+                ((ExperienceBobber) bobber).gf_setBaseExperience(this.baseExperience + bonusExperience);
             }
 
             user.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -230,8 +230,8 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
             return this;
         }
 
-        public Builder nightLuck(boolean nightLuck) {
-            this.nightLuck = nightLuck;
+        public Builder nightLuck() {
+            this.nightLuck = true;
             return this;
         }
 
