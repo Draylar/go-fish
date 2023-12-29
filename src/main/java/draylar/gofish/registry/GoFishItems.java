@@ -134,7 +134,7 @@ public class GoFishItems {
 
     public static <T extends Item> T register(String name, T item) {
         Registry.register(Registries.ITEM, GoFish.id(name), item);
-        ItemGroupEvents.modifyEntriesEvent(GoFish.GROUP).register(entries -> entries.add(item));
+        ItemGroupEvents.modifyEntriesEvent(GoFish.ITEM_GROUP).register(entries -> entries.add(item));
         return item;
     }
 

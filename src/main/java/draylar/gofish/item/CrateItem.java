@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -81,11 +82,10 @@ public class CrateItem extends BlockItem {
 
         if (world != null && !world.isClient) {
             // set up loot objects
-            LootTable supplier = Objects.requireNonNull(world.getServer()).getLootManager().getTable(identifier);
-            LootContext.Builder builder =
-                    new LootContext.Builder(world)
-                            .random(world.random)
-                            .parameter(LootContextParameters.ORIGIN, pos);
+            LootTable supplier = Objects.requireNonNull(world.getServer()).getLootManager().getLootTable(identifier);
+            LootContextParameterSet.Builder builder =
+                    new LootContextParameterSet.Builder(world)
+                            .add(LootContextParameters.ORIGIN, pos);
 
             // build & add loot to output
             List<ItemStack> stacks = supplier.generateLoot(builder.build(LootContextTypes.CHEST));

@@ -57,14 +57,14 @@ public class GoFishBlocks {
     public static <T extends Block> T registerCrate(String name, T block, Item.Settings settings) {
         T registeredBlock = Registry.register(Registries.BLOCK, GoFish.id(name), block);
         Registry.register(Registries.ITEM, GoFish.id(name), new CrateItem(block, settings));
-        ItemGroupEvents.modifyEntriesEvent(GoFish.GROUP).register(entries -> entries.add(registeredBlock));
+        ItemGroupEvents.modifyEntriesEvent(GoFish.ITEM_GROUP).register(entries -> entries.add(registeredBlock));
         return registeredBlock;
     }
 
     public static <T extends Block> T registerCrate(String name, T block, Item.Settings settings, Identifier id) {
         T registeredBlock = Registry.register(Registries.BLOCK, GoFish.id(name), block);
         Registry.register(Registries.ITEM, GoFish.id(name), new CrateItem(block, settings, id));
-        ItemGroupEvents.modifyEntriesEvent(GoFish.GROUP).register(entries -> entries.add(registeredBlock));
+        ItemGroupEvents.modifyEntriesEvent(GoFish.ITEM_GROUP).register(entries -> entries.add(registeredBlock));
         return registeredBlock;
     }
 
