@@ -7,7 +7,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 7,
           "name": "minecraft:slime_ball",
           "functions": [
@@ -21,7 +21,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:slime_block"
         }
@@ -34,7 +34,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 7,
           "name": "gofish:slimefish",
           "functions": [
@@ -48,7 +48,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "gofish:lilyfish",
           "functions": [
@@ -73,12 +73,12 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 25,
           "name": "gofish:slime_rod"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 10,
           "name": "gofish:slime_rod",
           "functions": [
@@ -92,7 +92,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:slime_rod",
           "functions": [
@@ -107,7 +107,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "gofish:slime_rod",
           "functions": [

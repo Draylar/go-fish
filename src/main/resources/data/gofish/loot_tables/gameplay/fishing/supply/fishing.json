@@ -7,7 +7,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 10,
           "name": "minecraft:cod",
           "functions": [
@@ -21,7 +21,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 10,
           "name": "minecraft:salmon",
           "functions": [
@@ -35,17 +35,17 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:tropical_fish"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:pufferfish"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:carrot_carp",
           "functions": [
@@ -59,7 +59,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:oakfish",
           "functions": [
@@ -81,7 +81,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:fishing_rod",
           "functions": [

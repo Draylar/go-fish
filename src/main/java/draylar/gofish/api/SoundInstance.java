@@ -1,8 +1,7 @@
 package draylar.gofish.api;
 
 import net.minecraft.sound.SoundEvent;
-
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class SoundInstance {
 

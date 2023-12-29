@@ -9,14 +9,12 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -82,11 +80,10 @@ public class CrateItem extends BlockItem {
 
         if (world != null && !world.isClient) {
             // set up loot objects
-            LootTable supplier = Objects.requireNonNull(world.getServer()).getLootManager().getTable(identifier);
-            LootContext.Builder builder =
-                    new LootContext.Builder(world)
-                            .random(world.random)
-                            .parameter(LootContextParameters.ORIGIN, pos);
+            LootTable supplier = Objects.requireNonNull(world.getServer()).getLootManager().getLootTable(identifier);
+            LootContextParameterSet.Builder builder =
+                    new LootContextParameterSet.Builder(world)
+                            .add(LootContextParameters.ORIGIN, pos);
 
             // build & add loot to output
             List<ItemStack> stacks = supplier.generateLoot(builder.build(LootContextTypes.CHEST));
@@ -100,6 +97,6 @@ public class CrateItem extends BlockItem {
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(new TranslatableText("gofish.crate_tooltip").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+        tooltip.add(Text.translatable("gofish.crate_tooltip").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
     }
 }

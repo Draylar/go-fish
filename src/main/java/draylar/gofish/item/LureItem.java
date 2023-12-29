@@ -5,7 +5,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
@@ -30,7 +29,7 @@ public class LureItem extends Item implements FishingBonus {
         super.appendTooltip(stack, world, tooltip, context);
 
         for(int i = 1; i <= 2; i++) {
-            tooltip.add(new TranslatableText(String.format("gofish.lure.tooltip_%d", i), lure).formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable(String.format("gofish.lure.tooltip_%d", i), lure).formatted(Formatting.GRAY));
         }
     }
 }

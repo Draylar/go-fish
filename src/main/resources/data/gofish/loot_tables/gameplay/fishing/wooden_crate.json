@@ -7,7 +7,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:cobweb",
           "functions": [
@@ -21,7 +21,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 2,
           "name": "minecraft:string",
           "functions": [
@@ -35,7 +35,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 2,
           "name": "minecraft:kelp",
           "functions": [
@@ -49,7 +49,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:stick",
           "functions": [
@@ -63,7 +63,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "gofish:seaweed",
           "functions": [
@@ -85,7 +85,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:coal",
           "functions": [
@@ -99,7 +99,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:iron_ore",
           "functions": [
@@ -113,7 +113,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:iron_nugget",
           "functions": [
@@ -127,7 +127,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:gold_nugget",
           "functions": [
@@ -141,7 +141,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:flint",
           "functions": [
@@ -155,7 +155,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:iron_ingot",
           "functions": [
@@ -169,7 +169,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:gold_ingot",
           "functions": [
@@ -191,7 +191,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:carrot",
           "functions": [
@@ -205,7 +205,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:wheat",
           "functions": [
@@ -219,7 +219,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:potato",
           "functions": [
@@ -233,7 +233,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:beetroot",
           "functions": [
@@ -255,7 +255,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:experience_bottle",
           "functions": [
@@ -269,7 +269,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 2,
           "name": "minecraft:book",
           "functions": [
@@ -281,7 +281,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 2,
           "name": "minecraft:emerald",
           "functions": [
@@ -295,32 +295,32 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:bucket"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:pufferfish_bucket"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:salmon_bucket"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:cod_bucket"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:tropical_fish_bucket"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 4,
           "name": "minecraft:iron_ingot",
           "functions": [
@@ -334,7 +334,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:gold_ingot",
           "functions": [
@@ -362,7 +362,7 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:crossbow",
           "functions": [
@@ -376,7 +376,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:bow",
           "functions": [
@@ -390,7 +390,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:stone_pickaxe",
           "functions": [
@@ -418,7 +418,7 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "minecraft:cod",
           "functions": [
@@ -432,7 +432,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "minecraft:salmon",
           "functions": [
@@ -446,12 +446,12 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:tropical_fish"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:pufferfish"
         }

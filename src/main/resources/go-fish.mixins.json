@@ -14,8 +14,6 @@
     "FishingHookPredicateMixin",
     "FishingRodPropertyMixin",
     "ItemEntityFireproofMixin",
-    "LocationPredicateBuilderAccessor",
-    "LootTableBuilderAccessor",
     "ParticleManagerMixin"
   ],
   "client": [],

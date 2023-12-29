@@ -3,23 +3,33 @@ package draylar.gofish;
 import draylar.gofish.command.FishCommand;
 import draylar.gofish.registry.*;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.BrewingRecipeRegistry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class GoFish implements ModInitializer {
 
-    public static final ItemGroup GROUP = FabricItemGroupBuilder.build(id("group"), () -> new ItemStack(GoFishItems.GOLDEN_FISH));
+    public static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, id("group"));
     public static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public void onInitialize() {
+        Registry.register(Registries.ITEM_GROUP, ITEM_GROUP, FabricItemGroup.builder()
+                .icon(() -> new ItemStack(GoFishItems.GOLDEN_FISH))
+                .displayName(Text.translatable("itemGroup.gofish.group"))
+                .build());
+
         GoFishBlocks.init();
         GoFishItems.init();
         GoFishEnchantments.init();

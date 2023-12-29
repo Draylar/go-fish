@@ -46,6 +46,6 @@ public abstract class FishingBobberExperienceMixin extends Entity implements Exp
     )
     private boolean modifyExperience(World world, Entity entity) {
         ServerPlayerEntity player = (ServerPlayerEntity) getPlayerOwner();
-        return player.world.spawnEntity(new ExperienceOrbEntity(player.world, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, this.random.nextInt(6) + gf_baseExperience));
+        return player.getWorld().spawnEntity(new ExperienceOrbEntity(player.getWorld(), player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, this.random.nextInt(6) + gf_baseExperience));
     }
 }

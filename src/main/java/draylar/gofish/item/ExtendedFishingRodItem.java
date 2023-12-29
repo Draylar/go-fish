@@ -1,6 +1,5 @@
 package draylar.gofish.item;
 
-import draylar.gofish.GoFish;
 import draylar.gofish.api.*;
 import draylar.gofish.registry.GoFishEnchantments;
 import net.minecraft.client.item.TooltipContext;
@@ -10,22 +9,21 @@ import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Vanishable;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable {
+public class ExtendedFishingRodItem extends FishingRodItem {
 
     private final SoundInstance retrieve;
     private final SoundInstance cast;
@@ -57,9 +55,9 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
         ItemStack heldStack = user.getStackInHand(hand);
         Random random = world.random;
 
-        if (user.fishHook != null) {
+        if(user.fishHook != null) {
             // Retrieve fishing bobber and damage Fishing Rod
-            if (!world.isClient) {
+            if(!world.isClient) {
                 int damage = user.fishHook.use(heldStack);
                 heldStack.damage(damage, user, player -> player.sendToolBreakStatus(hand));
             }
@@ -69,14 +67,14 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
             world.playSound(null, user.getX(), user.getY(), user.getZ(), cast.getSound(), SoundCategory.NEUTRAL, cast.getVolume(random), cast.getPitch(random));
 
             // Summon new fishing bobber
-            if (!world.isClient) {
+            if(!world.isClient) {
                 boolean smeltBuff = false;
                 int bonusLure = 0;
                 int bonusLuck = 0;
                 int bonusExperience = 0;
 
                 // Check for night luck
-                if(nightLuck && user.world.isNight()) {
+                if(nightLuck && user.getWorld().isNight()) {
                     bonusLuck++;
                 }
 
@@ -85,10 +83,10 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
                 for (ItemStack stack : user.getInventory().main) {
                     Item item = stack.getItem();
 
-                    if (item instanceof FishingBonus) {
+                    if(item instanceof FishingBonus) {
                         FishingBonus bonus = (FishingBonus) item;
 
-                        if (!found.contains(bonus)) {
+                        if(!found.contains(bonus)) {
                             if(bonus.shouldApply(world, user)) {
                                 found.add(bonus);
                                 smeltBuff = bonus.providesAutosmelt() || smeltBuff;
@@ -106,15 +104,15 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
                 boolean smelts = hasDeepfryEnchantment || rodAutosmelts || smeltBuff;
 
                 // Calculate lure and luck
-                int lure = EnchantmentHelper.getLure(heldStack) + baseLure + bonusLuck + bonusLure;
-                int lots = EnchantmentHelper.getLuckOfTheSea(heldStack) + baseLOTS + bonusLuck + bonusLuck;
+                int lure = Math.min((EnchantmentHelper.getLure(heldStack) + baseLure + bonusLure),5);
+                int lots = EnchantmentHelper.getLuckOfTheSea(heldStack) + baseLOTS + bonusLuck;
 
                 // Summon bobber with stats
                 FishingBobberEntity bobber = new FishingBobberEntity(user, world, lots, lure);
                 world.spawnEntity(bobber);
                 ((FireproofEntity) bobber).gf_setFireproof(lavaProof);
                 ((SmeltingBobber) bobber).gf_setSmelts(smelts);
-                ((ExperienceBobber) bobber).gf_setBaseExperience(1 + bonusExperience);
+                ((ExperienceBobber) bobber).gf_setBaseExperience(this.baseExperience + bonusExperience);
             }
 
             user.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -126,8 +124,8 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
     @Override
     public Text getName(ItemStack stack) {
         Text name = super.getName(stack);
-        if(name instanceof TranslatableText) {
-            ((TranslatableText) name).formatted(formatting);
+        if(name instanceof MutableText) {
+            ((MutableText) name).formatted(formatting);
         }
 
         return name;
@@ -139,7 +137,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
 
         if(lines > 0) {
             for (int i = 1; i <= lines; i++) {
-                tooltip.add(new TranslatableText(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable(String.format("%s.tooltip_%d", getTranslationKey(), i)).formatted(Formatting.GRAY));
             }
         }
     }
@@ -163,7 +161,7 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
 
     public static class Builder {
 
-        private Item.Settings settings = new Item.Settings().group(GoFish.GROUP).maxDamage(100);
+        private Item.Settings settings = new Item.Settings().maxDamage(100);
         private SoundInstance retrieve = new SoundInstance(SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, 1.0F, SoundInstance.DEFAULT_PITCH);
         private SoundInstance cast = new SoundInstance(SoundEvents.ENTITY_FISHING_BOBBER_THROW, 0.5F, SoundInstance.DEFAULT_PITCH);
         private int baseLure = 0;
@@ -229,8 +227,8 @@ public class ExtendedFishingRodItem extends FishingRodItem implements Vanishable
             return this;
         }
 
-        public Builder nightLuck(boolean nightLuck) {
-            this.nightLuck = nightLuck;
+        public Builder nightLuck() {
+            this.nightLuck = true;
             return this;
         }
 

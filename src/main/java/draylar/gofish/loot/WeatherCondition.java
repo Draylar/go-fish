@@ -1,12 +1,8 @@
 package draylar.gofish.loot;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import draylar.gofish.loot.biome.BiomeCategoryPredicate;
-import draylar.gofish.loot.biome.BiomeLootCondition;
-import draylar.gofish.loot.biome.BiomePredicate;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import draylar.gofish.registry.GoFishLoot;
 import net.minecraft.entity.Entity;
 import net.minecraft.loot.condition.LootCondition;
@@ -14,29 +10,25 @@ import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.util.JsonSerializer;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.Set;
 
-public class WeatherCondition implements LootCondition {
+public record WeatherCondition(Optional<Boolean> raining, Optional<Boolean> thundering, Optional<Boolean> snowing) implements LootCondition {
 
-    protected boolean raining = false;
-    protected boolean thundering = false;
-    protected boolean snowing = false;
-
-    public WeatherCondition() {
-
-    }
-
-    public WeatherCondition(boolean raining, boolean thundering, boolean snowing) {
-        this.raining = raining;
-        this.thundering = thundering;
-        this.snowing = snowing;
-    }
+    public static final Codec<WeatherCondition> CODEC = RecordCodecBuilder.create(
+            instance -> instance.group(
+                            Codecs.createStrictOptionalFieldCodec(Codec.BOOL, "raining").forGetter(WeatherCondition::raining),
+                            Codecs.createStrictOptionalFieldCodec(Codec.BOOL, "thundering").forGetter(WeatherCondition::thundering),
+                            Codecs.createStrictOptionalFieldCodec(Codec.BOOL, "snowing").forGetter(WeatherCondition::snowing)
+                    )
+                    .apply(instance, WeatherCondition::new)
+    );
 
     @Override
     public LootConditionType getType() {
@@ -54,22 +46,22 @@ public class WeatherCondition implements LootCondition {
         @Nullable Vec3d pos = lootContext.get(LootContextParameters.ORIGIN);
 
         if(entity != null && pos != null) {
-            World world = entity.world;
+            World world = entity.getWorld();
 
             // If raining is required and the world is not raining, return false.
-            if (raining && !world.isRaining()) {
+            if (raining.isPresent() && raining.get() && !world.isRaining()) {
                 return false;
             }
 
             // If thundering is required and the world is not raining, return false.
-            if (thundering && !world.isThundering()) {
+            if (thundering.isPresent() && thundering.get() && !world.isThundering()) {
                 return false;
             }
 
             // same check for snowing
-            if (snowing) {
+            if (snowing.isPresent() && snowing.get()) {
                 // >= .15 = no snow
-                if(world.getBiome(entity.getBlockPos()).value().doesNotSnow(new BlockPos(pos))) {
+                if(world.getBiome(entity.getBlockPos()).value().doesNotSnow(new BlockPos((int) Math.floor(pos.x), (int) Math.floor(pos.y), (int) Math.floor(pos.z)))) {
                     return false;
                 }
 
@@ -84,24 +76,6 @@ public class WeatherCondition implements LootCondition {
     }
 
     public static LootCondition.Builder builder(boolean raining, boolean thundering, boolean snowing) {
-        return () -> new WeatherCondition(raining, thundering, snowing);
-    }
-
-    public static class Serializer implements JsonSerializer<WeatherCondition> {
-
-        @Override
-        public void toJson(JsonObject jsonObject, WeatherCondition condition, JsonSerializationContext jsonSerializationContext) {
-            jsonObject.addProperty("raining", condition.raining);
-            jsonObject.addProperty("thundering", condition.thundering);
-            jsonObject.addProperty("snowing", condition.snowing);
-        }
-
-        @Override
-        public WeatherCondition fromJson(JsonObject obj, JsonDeserializationContext context) {
-            return new WeatherCondition(
-                    obj.has("raining") && obj.get("raining").getAsBoolean(),
-                    obj.has("thundering") && obj.get("thundering").getAsBoolean(),
-                    obj.has("snowing") && obj.get("snowing").getAsBoolean());
-        }
+        return () -> new WeatherCondition(Optional.of(raining), Optional.of(thundering), Optional.of(snowing));
     }
 }

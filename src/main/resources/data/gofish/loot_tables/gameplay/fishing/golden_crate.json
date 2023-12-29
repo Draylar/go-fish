@@ -7,7 +7,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:golden_apple",
           "functions": [
@@ -21,7 +21,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:golden_carrot",
           "functions": [
@@ -35,7 +35,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:glistering_melon_slice",
           "functions": [
@@ -60,7 +60,7 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:golden_fish"
         }
@@ -76,7 +76,7 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_helmet",
           "functions": [
@@ -97,7 +97,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_chestplate",
           "functions": [
@@ -118,7 +118,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_leggings",
           "functions": [
@@ -139,7 +139,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_boots",
           "functions": [
@@ -171,7 +171,7 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_sword",
           "functions": [
@@ -192,7 +192,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_pickaxe",
           "functions": [
@@ -213,7 +213,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_axe",
           "functions": [
@@ -234,7 +234,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_shovel",
           "functions": [
@@ -255,7 +255,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_hoe",
           "functions": [
@@ -287,12 +287,12 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:gold_block"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 5,
           "name": "minecraft:gold_ingot",
           "functions": [
@@ -306,7 +306,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:gold_ore",
           "quality": 2,
@@ -321,12 +321,12 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:golden_horse_armor"
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:gold_nugget",
           "functions": [
@@ -351,7 +351,7 @@
       ],
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:enchanted_golden_apple"
         }
@@ -364,7 +364,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:cod",
           "functions": [
@@ -378,7 +378,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:salmon",
           "functions": [
@@ -400,7 +400,7 @@
       },
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:cobweb",
           "functions": [
@@ -414,7 +414,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:string",
           "functions": [
@@ -428,7 +428,7 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "weight": 1,
           "name": "gofish:seaweed",
           "functions": [

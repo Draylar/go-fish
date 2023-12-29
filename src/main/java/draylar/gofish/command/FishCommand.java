@@ -5,19 +5,18 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import draylar.gofish.impl.GoFishLootTables;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class FishCommand {
                 }))
                 .build();
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, b) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, access, dedicated) -> {
             dispatcher.getRoot().addChild(root);
         });
     }
@@ -48,19 +47,20 @@ public class FishCommand {
         ServerPlayerEntity player = context.getSource().getPlayer();
         ServerWorld world = context.getSource().getWorld();
 
-        LootContext lootContext = new LootContext.Builder(serverCommandSource.getWorld())
-                .parameter(LootContextParameters.ORIGIN, player.getPos())
-                .parameter(LootContextParameters.TOOL, player.getStackInHand(player.getActiveHand()))
-                .optionalParameter(LootContextParameters.THIS_ENTITY, serverCommandSource.getEntity())
+        LootContextParameterSet lootContext = new LootContextParameterSet.Builder(serverCommandSource.getWorld())
+                .add(LootContextParameters.ORIGIN, player.getPos())
+                .add(LootContextParameters.TOOL, player.getStackInHand(player.getActiveHand()))
+                .addOptional(LootContextParameters.THIS_ENTITY, serverCommandSource.getEntity())
                 .build(LootContextTypes.FISHING);
 
         LootTable table;
-        if(world.getDimension().isUltrawarm()) {
-            table = world.getServer().getLootManager().getTable(GoFishLootTables.NETHER_FISHING);
-        } else if(world.getDimension().hasEnderDragonFight()) {
-            table = world.getServer().getLootManager().getTable(GoFishLootTables.END_FISHING);
+        final DimensionType dimension = world.getDimension();
+        if(dimension.ultrawarm()) {
+            table = world.getServer().getLootManager().getLootTable(GoFishLootTables.NETHER_FISHING);
+        } else if (!dimension.bedWorks()) {
+            table = world.getServer().getLootManager().getLootTable(GoFishLootTables.END_FISHING);
         } else {
-            table = world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);
+            table = world.getServer().getLootManager().getLootTable(LootTables.FISHING_GAMEPLAY);
         }
 
         for(int z = 0; z < times; z++){
