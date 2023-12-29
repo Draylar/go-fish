@@ -33,6 +33,10 @@
   "item.gofish.thundering_bass":"雷鲈",
   "item.gofish.smoked_cloudy_crab":"熏制云蟹",
   "item.gofish.blizzard_bass":"霜雪鲈",
+  "item.gofish.omega_floater": "欧米茄鲼",
+  "item.gofish.dragonfish": "龙鱼",
+  "item.gofish.chorus_cod": "紫颂鳕",
+  "item.gofish.portal_puffer": "末影鲀",
 
   "item.gofish.steamed_bass":"清蒸雨鲈",
   "item.gofish.steamed_bass.tooltip_1":"虽然蒸着蒸着差点就蒸发了，",
@@ -54,7 +58,7 @@
 
   "gofish.lure.tooltip_1":"放在身上的时候",
   "gofish.lure.tooltip_2":"提供§2+%d§r饵钓。",
-  "gofish.lots.tooltip_2":"提供§2+%d§r幸运%s。",
+  "gofish.lots.tooltip_2":"在灵魂沙谷提供§2+%d§r幸运。",
 
   "item.gofish.endfish_and_chorus":"炸末地鱼佐紫颂果",
   "item.gofish.endfish_and_chorus.tooltip_1":"甘与咸的搭配。",
